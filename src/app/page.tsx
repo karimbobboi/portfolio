@@ -13,6 +13,37 @@ interface TrackInfo {
   url?: string
 }
 
+const books = [
+  {
+    name: 'The Name of the Rose',
+    author: 'Umberto Eco',
+    year: '1980',
+    cover: '/book-covers/the_name_of_the_rose.jpg',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/119073.The_Name_of_the_Rose'
+  },
+  {
+    name: 'One Hundred Years of Solitude',
+    author: 'Gabriel García Márquez',
+    year: '1967',
+    cover: '/book-covers/solitude.jpg',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude'
+  },
+  {
+    name: 'Vagabond',
+    author: 'Takehiko Inoue',
+    year: '1999',
+    cover: '/book-covers/vagabond.jpg',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/251912.Vagabond_Volume_1'
+  },
+  {
+    name: 'Animal Farm',
+    author: 'George Orwell',
+    year: '1945',
+    cover: '/book-covers/animal_farm.jpg',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/170448.Animal_Farm'
+  }
+];
+
 const formatDate = (dateString: string) => {
   if (!dateString) return '';
   
@@ -54,52 +85,58 @@ const formatDate = (dateString: string) => {
 };
 
 export default function Home() {
-  const [recentTracks, setRecentTracks] = useState <TrackInfo[]>([]);
+  // const [recentTracks, setRecentTracks] = useState <TrackInfo[]>([]);
   
-  const fetchRecentTracks = async () => {
-    const lastfmUsername = 'bobboi04';
-    const baseurl = 'http://ws.audioscrobbler.com/2.0/';
+  // const fetchRecentTracks = async () => {
+  //   const lastfmUsername = 'bobboi04';
+  //   const baseurl = 'http://ws.audioscrobbler.com/2.0/';
 
-    try {
-      const url = `${baseurl}?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${process.env.NEXT_PUBLIC_API_FM_KEY}&format=json`;
-      const response = await fetch(url, {
-        method: 'GET'
-      });
+  //   try {
+  //     const url = `${baseurl}?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${process.env.NEXT_PUBLIC_API_FM_KEY}&format=json`;
+  //     const response = await fetch(url, {
+  //       method: 'GET'
+  //     });
 
-      const data = await response.json();
-      // console.log(data.recenttracks);
-      const tracks = data.recenttracks.track.map(
-        (track: any, index: number) => {
-          const newTrack: TrackInfo = {
-            name: track.name,
-            album: track.album['#text'],
-            artist: track.artist['#text'],
-            date: track.date ? track.date['#text'] : '',
-            image: track.image[3]['#text'],
-            url: track.url
-          }
+  //     const data = await response.json();
+  //     // console.log(data.recenttracks);
+  //     const tracks = data.recenttracks.track.map(
+  //       (track: any, index: number) => {
+  //         const newTrack: TrackInfo = {
+  //           name: track.name,
+  //           album: track.album['#text'],
+  //           artist: track.artist['#text'],
+  //           date: track.date ? track.date['#text'] : '',
+  //           image: track.image[3]['#text'],
+  //           url: track.url
+  //         }
 
-          return newTrack;
-        })
-      console.log(tracks);
-      setRecentTracks(tracks);
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
+  //         return newTrack;
+  //       })
+  //     console.log(tracks);
+  //     setRecentTracks(tracks);
+  //   }
+  //   catch(error){
+  //     console.log(error);
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchRecentTracks();
-  }, []);
+  // useEffect(() => {
+  //   fetchRecentTracks();
+  // }, []);
 
   return (
-    <main className='p-1 min-h-screen relative'>
+    <main className='min-h-screen relative'>
       <NavBar />
-      <div className='relative h-[calc(100vh-100px)] m-1 rounded-md'>
-        <Background/>
+      {/* fixed background container */}
+      <div className='fixed inset-x-0 top-[60px] bottom-0 -z-10'>
+        <Background />
+      </div>
+
+      {/* scrollable content */}
+      <div className='relative pt-4 pb-8'>
         <div className='flex justify-center'>
-          <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-black/20 mt-20' 
+          {/* music container */}
+          {/* <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-black/20' 
             style={{
               scrollbarWidth: 'none',
               width: '70vw'
@@ -137,6 +174,52 @@ export default function Home() {
                     </p>
                     <p className="text-xs text-white/75 truncate">
                       {track?.date ? formatDate(track?.date) : ''}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div> */}
+
+          {/* books container */}
+          <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-black/20' 
+            style={{
+              scrollbarWidth: 'none',
+              width: '70vw'
+            }}
+          >
+            <div className='mb-2 sticky border-b pb-2'>
+              <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
+                Books
+              </h3>
+              <p className='text-[#efdfba] text-opacity-50 font-light'>My favourite books</p>
+            </div>
+            <div className="grid grid-cols-4 gap-6 pb-1">
+              {books.map((book, index) => (
+                <div 
+                  key={index}
+                  className='cursor-pointer group hover:bg-white/10 rounded-lg p-1 transition-colors'
+                  onClick={() => {
+                    if(book?.goodreadsUrl)
+                      window.open(book.goodreadsUrl, '_blank');
+                  }}
+                >
+                  <div className="aspect-[2/3] mb-1 relative">
+                    <img 
+                      src={book.cover} 
+                      alt={book.name}
+                      className="w-full h-full object-cover rounded-r-md shadow-lg"
+                    />
+                  </div>
+                  <div className="">
+                    <h3 className="font-medium text-sm text-white truncate">
+                      {book.name}
+                    </h3>
+                    <p className="text-xs text-white/75 truncate">
+                      {book.author}
+                    </p>
+                    <p className="text-xs text-white/75 truncate">
+                      {book.year}
                     </p>
                   </div>
                 </div>
