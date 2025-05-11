@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+:root {
+    background-color: black;
+  --city-hunter-blue-50: #e1eafb;
+  --city-hunter-blue-100: #c4d6f7;
+  --city-hunter-blue-200: #8caced;
+  --city-hunter-blue-300: #5581e0;
+  --city-hunter-blue-400: #2053d0;
+  --city-hunter-blue-500: #0027a5;
+  --city-hunter-blue-600: #00187e;
+  --city-hunter-blue-700: #000065;
+  --city-hunter-blue-800: #06004c;
+  --city-hunter-blue-900: #090033;
+  --city-hunter-blue-950: #080028;
+}

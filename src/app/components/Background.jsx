@@ -1,47 +1,40 @@
 "use client"
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import { Gradient } from "./gradient.jsx";
+import styles from "./Background.module.css";
 
-function Background() {
+const Background = memo(function Background() {
+  const gradientRef = useRef(null);
+
   useEffect(() => {
-    const gradient = new Gradient();
-    gradient.initGradient("#gradient-canvas");
+    // function to cleanup gradient instance
+    const cleanupFunction = () => {
+      if (gradientRef.current) {
+        gradientRef.current = null;
+      }
+    }
+
+    if (!gradientRef.current) {
+      gradientRef.current = new Gradient();
+      gradientRef.current.initGradient("#gradient-canvas");
+    }
+
+    // run when component unmounts
+    return cleanupFunction;
   }, []);
 
   return (
-    <>
-      <div 
-        style={{ 
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backdropFilter: "blur(50px)",
-          WebkitBackdropFilter: "blur(50px)",
-          zIndex: -1
-        }}
-      />
-      
-      <div style={{ position: "fixed", height: "100vh", width: "100vw", zIndex: -2 }}>
-        <canvas
+    <div className="rounded-md">
+      <div className={'rounded-md ' + styles.blurOverlay} />
+      <div className={'rounded-md ' + styles.bgcontainer}>
+        <canvas 
           id="gradient-canvas"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            "--gradient-color-1": "#000000",
-            "--gradient-color-2": "#0027A5",
-            "--gradient-color-3": "#0027A5",
-            "--gradient-color-4": "#CFAF63",
-          }}
+          className={styles.canvas}
         />
       </div>
-    </>
+    </div>
   );
-}
+});
 
 export default Background;
