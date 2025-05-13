@@ -1,229 +1,201 @@
 "use client"
 
+import { useState } from 'react';
 import Background from './components/Background';
 import NavBar from './components/NavBar';
-import { useEffect, useState } from 'react';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa';
 
-interface TrackInfo {
-  name: string,
-  album: string,
-  artist: string,
-  date?: string,
-  image?: string,
-  url?: string
+interface Experience {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string[];
+  techstack: string[];
 }
 
-const books = [
+interface Education {
+  degree: string;
+  uni: string;
+  grade?: string;
+  period: string;
+  description: string[];
+}
+
+const experiences: Experience[] = [
   {
-    name: 'The Name of the Rose',
-    author: 'Umberto Eco',
-    year: '1980',
-    cover: '/book-covers/the_name_of_the_rose.jpg',
-    goodreadsUrl: 'https://www.goodreads.com/book/show/119073.The_Name_of_the_Rose'
-  },
-  {
-    name: 'One Hundred Years of Solitude',
-    author: 'Gabriel García Márquez',
-    year: '1967',
-    cover: '/book-covers/solitude.jpg',
-    goodreadsUrl: 'https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude'
-  },
-  {
-    name: 'Vagabond',
-    author: 'Takehiko Inoue',
-    year: '1999',
-    cover: '/book-covers/vagabond.jpg',
-    goodreadsUrl: 'https://www.goodreads.com/book/show/251912.Vagabond_Volume_1'
-  },
-  {
-    name: 'Animal Farm',
-    author: 'George Orwell',
-    year: '1945',
-    cover: '/book-covers/animal_farm.jpg',
-    goodreadsUrl: 'https://www.goodreads.com/book/show/170448.Animal_Farm'
+    title: "Software Engineer Intern",
+    company: "ZedSoft Limited",
+    location: 'Leeds, UK',
+    period: "July 2022 — September 2022",
+    description: [
+      "Collaborated within a small Agile team to develop a user-friendly dashboard for a cryptocurrency platform using Vue.js and Bootstrap",
+      "Integrated RESTful APIs to facilitate seamless communication between the frontend and backend systems",
+      "Contributed to the design and implementation of the platform's PostgreSQL database to optimise data management",
+      "Conducted code reviews and collaborated with team members to maintain high-quality code standards"
+    ],
+    techstack: ["Vue.js", "Bootstrap", "PostgreSQL"]
   }
 ];
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return '';
-  
-  // lastfm returns date in UTC
-  const date = new Date(dateString + ' UTC');
-  const now = new Date(new Date().toUTCString());
-  const diffMs = date.getTime() - now.getTime();
-  const diffMins = Math.floor(diffMs / (1000 * 60));
-  const diffHours = Math.floor(diffMins / 60);
-  const diffDays = Math.floor(diffHours / 24);
+const education: Education[] = [
+  {
+    degree: "Bachelor of Science in Computing",
+    uni: "University of Buckingham",
+    grade: "First-Class Honours",
+    period: "2023 — 2025",
+    description: [
+      "Awarded the Rhodri J. Jassim Prize for Best Performing Student in Part I Examinations",
+      "Achieved a First-Class grade for final year project",
+      "Relevant coursework: Design, Implementation and Analysis of Algorithms, Advanced Web Applications Development, Object Oriented Programming, Principles of Database Systems, UX Design, Software Quality Assurance"
+    ]
+  },
+  {
+    degree: "Bachelor of Science in Computer Science",
+    uni: "University of Leeds",
+    grade: "Transferred",
+    period: "2020 — 2022",
+    description: [""]
+  }
+];
 
-  console.log(now, date, diffMins)
+const ContactLink = ({ href, icon }: { href: string; icon: React.ReactNode }) => (
+  <a 
+    href={href}
+    target='_blank'
+    className='text-white/75 hover:text-[#2053d0] transition-colors'
+  >
+    {icon}
+  </a>
+);
 
-  // if less than 5 minutes
-  if (Math.abs(diffMins) < 5) {
-    return 'Just now';
+const TabContent = ({ activeTab }: { activeTab: 'experience' | 'education' }) => {
+  if (activeTab === 'experience') {
+    return (
+      <div className='space-y-4'>
+        {experiences.map((exp, index) => (
+          <div key={index} className='space-y-1'>
+            <h3 className='text-lg font-semibold text-white'>{exp.title}</h3>
+            <div className='flex text-md font-light justify-between items-center text-white/90'>
+              <p>{exp.company}</p>
+              <p>{exp.location}</p>
+            </div>
+            <p className='text-sm text-white/75'>{exp.period}</p>
+            <ul className='list-disc list-inside text-sm text-white/75 space-y-1'>
+              {exp.description.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            <div className='grid auto-cols-max grid-flow-col gap-1 text-neutral-200 text-xs font-light pt-3'>
+              {exp.techstack.map((item, i) => (
+                <span key={i} className='bg-white/15 p-2 backdrop-blur rounded-full'>{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
-  if (Math.abs(diffMins) < 60) {
-    return new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(diffMins, 'minutes');
-  }
-  
-  // if less than 24 hours
-  if (Math.abs(diffHours) < 24) {
-    return new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(diffHours, 'hours');
-  }
-  
-  // if older than a day
-  if (Math.abs(diffDays) >= 1) {
-    return date.toLocaleDateString('en-US', { 
-      month: 'short',
-      day: 'numeric',
-      year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
-    });
-  }
-
-  // fallback to minutes
-  return new Intl.RelativeTimeFormat('en', { numeric: 'auto'}).format(diffMins, 'minutes');
+  return (
+    <div className='space-y-4'>
+      {education.map((edu, index) => (
+        <div key={index} className='space-y-1'>
+          <h3 className='text-lg font-semibold text-white'>{edu.degree} {edu.grade === 'Transferred' && (<span className='text-white/40 text-sm'>{`(${edu.grade})`}</span>)}</h3>
+          <div className='flex text-md font-light justify-between items-center text-white/90'>
+              <p>{edu.uni}</p>
+              {edu.grade !== 'Transferred' && (<p>{edu.grade}</p>)}
+            </div>
+          <p className='text-xs text-white/75'>{edu.period}</p>
+          <ul className='list-disc list-inside text-sm text-white/75 space-y-1'>
+            {edu.description.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default function Home() {
-  // const [recentTracks, setRecentTracks] = useState <TrackInfo[]>([]);
-  
-  // const fetchRecentTracks = async () => {
-  //   const lastfmUsername = 'bobboi04';
-  //   const baseurl = 'http://ws.audioscrobbler.com/2.0/';
-
-  //   try {
-  //     const url = `${baseurl}?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${process.env.NEXT_PUBLIC_API_FM_KEY}&format=json`;
-  //     const response = await fetch(url, {
-  //       method: 'GET'
-  //     });
-
-  //     const data = await response.json();
-  //     // console.log(data.recenttracks);
-  //     const tracks = data.recenttracks.track.map(
-  //       (track: any, index: number) => {
-  //         const newTrack: TrackInfo = {
-  //           name: track.name,
-  //           album: track.album['#text'],
-  //           artist: track.artist['#text'],
-  //           date: track.date ? track.date['#text'] : '',
-  //           image: track.image[3]['#text'],
-  //           url: track.url
-  //         }
-
-  //         return newTrack;
-  //       })
-  //     console.log(tracks);
-  //     setRecentTracks(tracks);
-  //   }
-  //   catch(error){
-  //     console.log(error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchRecentTracks();
-  // }, []);
+  const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
 
   return (
     <main className='min-h-screen relative'>
-      <NavBar />
-      {/* fixed background container */}
+      <header className="sticky top-0 z-50">
+        <NavBar />
+      </header>
+      
       <div className='fixed inset-x-0 top-[60px] bottom-0 -z-10'>
         <Background />
       </div>
 
-      {/* scrollable content */}
-      <div className='relative pt-4 pb-8'>
-        <div className='flex justify-center'>
-          {/* music container */}
-          {/* <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-black/20' 
-            style={{
-              scrollbarWidth: 'none',
-              width: '70vw'
-            }}
-          >
-            <div className='mb-2 sticky border-b pb-2'>
-              <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
-                Music
-              </h3>
-              <p className='text-[#efdfba] text-opacity-50 font-light'>Some of my recently played songs</p>
-            </div>
-            <div className="grid grid-cols-4 gap-6 pb-1">
-              {recentTracks.slice(0, 12).map((track, index) => (
-                <div 
-                  key={index}
-                  className='cursor-pointer'
-                  onClick={() => {
-                    if(track?.url)
-                      window.open(track.url, '_blank');
-                  }}
-                >
-                  <div className="aspect-square mb-1 relative">
-                    <img 
-                      src={track.image} 
-                      alt={track.name}
-                      className="w-full h-full object-cover rounded-md shadow-lg"
-                    />
-                  </div>
-                  <div className="">
-                    <h3 className="font-medium text-sm text-white truncate">
-                      {track.name}
-                    </h3>
-                    <p className="text-xs text-white/75 truncate">
-                      {track.artist}
-                    </p>
-                    <p className="text-xs text-white/75 truncate">
-                      {track?.date ? formatDate(track?.date) : ''}
-                    </p>
-                  </div>
+      <div className='relative pt-20 pb-10'>
+        <div className='flex justify-center mb-12 mt-15'>
+          <div className='w-full max-w-3xl p-3 rounded-lg'>
+            <div className='space-y-4'>
+              <div className='space-y-2'>
+                <h1 className='text-3xl font-bold text-white'>Hello, I'm Abdulkarim.</h1>
+                <div className='space-y-4'>
+                  <p className='text-white/80 leading-relaxed my-3'>
+                    I am <span className='font-semibold text-white/90'>Abdulkarim</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div> */}
+              </div>
 
-          {/* books container */}
-          <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-black/20' 
-            style={{
-              scrollbarWidth: 'none',
-              width: '70vw'
-            }}
-          >
-            <div className='mb-2 sticky border-b pb-2'>
-              <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
-                Books
-              </h3>
-              <p className='text-[#efdfba] text-opacity-50 font-light'>My favourite books</p>
+              <div className='grid auto-cols-max grid-flow-col gap-3 text-neutral-400'>
+                <ContactLink 
+                  href="mailto:abdulkarimbobboi@gmail.com"
+                  icon={<FaEnvelope className="w-[2.5rem] h-[2.5rem]" />}
+                />
+                <ContactLink 
+                  href="https://github.com/karimbobboi"
+                  icon={<FaGithub className="w-[2.5rem] h-[2.5rem]" />}
+                />
+                <ContactLink 
+                  href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/"
+                  icon={<FaLinkedin className="w-[2.5rem] h-[2.5rem]" />}
+                />
+                <ContactLink 
+                  href="/cv.pdf"
+                  icon={<FaFileAlt className="w-[2.5rem] h-[2.5rem]" />}
+                />
+              </div>
             </div>
-            <div className="grid grid-cols-4 gap-6 pb-1">
-              {books.map((book, index) => (
-                <div 
-                  key={index}
-                  className='cursor-pointer group hover:bg-white/10 rounded-lg p-1 transition-colors'
-                  onClick={() => {
-                    if(book?.goodreadsUrl)
-                      window.open(book.goodreadsUrl, '_blank');
-                  }}
+          </div>
+        </div>
+        
+        <div className='flex justify-center mt-10'>
+          <div className='w-full max-w-3xl p-3 rounded-lg'>
+            <div className='space-y-3'>
+              <h1 className='text-3xl font-bold text-white'>Experience</h1>
+              <div className='flex space-x-4 border-b border-white/20'>
+                <button
+                  onClick={() => setActiveTab('experience')}
+                  className={`px-2 text-sm font-medium transition-colors ${
+                    activeTab === 'experience' 
+                      ? 'text-white border-b-2 border-white' 
+                      : 'text-white/50 hover:text-white'
+                  }`}
                 >
-                  <div className="aspect-[2/3] mb-1 relative">
-                    <img 
-                      src={book.cover} 
-                      alt={book.name}
-                      className="w-full h-full object-cover rounded-r-md shadow-lg"
-                    />
-                  </div>
-                  <div className="">
-                    <h3 className="font-medium text-sm text-white truncate">
-                      {book.name}
-                    </h3>
-                    <p className="text-xs text-white/75 truncate">
-                      {book.author}
-                    </p>
-                    <p className="text-xs text-white/75 truncate">
-                      {book.year}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                  Experience
+                </button>
+                <button
+                  onClick={() => setActiveTab('education')}
+                  className={`px-2 text-sm font-medium transition-colors ${
+                    activeTab === 'education' 
+                      ? 'text-white border-b-2 border-white' 
+                      : 'text-white/50 hover:text-white'
+                  }`}
+                >
+                  Education
+                </button>
+              </div>
+              
+              <div className='border border-gray-800 p-3 rounded bg-[#080028]/100'>
+                <TabContent activeTab={activeTab} />
+              </div>
             </div>
           </div>
         </div>
