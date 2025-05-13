@@ -84,12 +84,12 @@ const TabContent = ({ activeTab }: { activeTab: 'experience' | 'education' }) =>
         {experiences.map((exp, index) => (
           <div key={index} className='space-y-1'>
             <h3 className='text-lg font-semibold text-white'>{exp.title}</h3>
-            <div className='flex text-md font-light justify-between items-center text-white/90'>
+            <div className='flex text-md font-light justify-between items-center text-white'>
               <p>{exp.company}</p>
               <p>{exp.location}</p>
             </div>
-            <p className='text-sm text-white/75'>{exp.period}</p>
-            <ul className='list-disc list-inside text-sm text-white/75 space-y-1'>
+            <p className='text-sm text-white'>{exp.period}</p>
+            <ul className='list-disc list-inside text-sm text-white space-y-2'>
               {exp.description.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -109,13 +109,13 @@ const TabContent = ({ activeTab }: { activeTab: 'experience' | 'education' }) =>
     <div className='space-y-4'>
       {education.map((edu, index) => (
         <div key={index} className='space-y-1'>
-          <h3 className='text-lg font-semibold text-white'>{edu.degree} {edu.grade === 'Transferred' && (<span className='text-white/40 text-sm'>{`(${edu.grade})`}</span>)}</h3>
-          <div className='flex text-md font-light justify-between items-center text-white/90'>
+          <h3 className='text-lg font-semibold text-white'>{edu.degree} {edu.grade === 'Transferred' && (<span className='text-white/60 text-sm'>{`(${edu.grade})`}</span>)}</h3>
+          <div className='flex text-md font-light justify-between items-center text-white'>
               <p>{edu.uni}</p>
               {edu.grade !== 'Transferred' && (<p>{edu.grade}</p>)}
             </div>
-          <p className='text-xs text-white/75'>{edu.period}</p>
-          <ul className='list-disc list-inside text-sm text-white/75 space-y-1'>
+          <p className='text-xs text-white'>{edu.period}</p>
+          <ul className='list-disc list-inside text-sm text-white space-y-2'>
             {edu.description.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
@@ -140,14 +140,14 @@ export default function Home() {
       </div>
 
       <div className='relative py-20'>
-        <div className='flex justify-center mb-12 mt-10'>
+        <div className='flex justify-center mb-12 mt-8'>
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-4'>
               <div className='space-y-2'>
                 <h1 className='text-3xl font-bold text-white'>Hello, I'm Abdulkarim.</h1>
                 <div className='space-y-4'>
-                  <p className='text-white/80 leading-relaxed my-3'>
-                    I am <span className='font-semibold text-white/90'>Abdulkarim</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  <p className='text-white/100 leading-relaxed my-3'>
+                  I'm a Computing graduate and software engineer based in Sheffield, UK. I enjoy building clean, functional applications with a strong focus on user experience. I like working across the stack, from designing interfaces to connecting APIs and managing data. While I'm currently focused on full-stack web development, I'm always exploring new areas of computer science and looking for new things to learn.
                   </p>
                 </div>
               </div>

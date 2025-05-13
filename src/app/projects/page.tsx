@@ -42,13 +42,13 @@ const projects: Project[] = [
 ];
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <article className='group border border-white/20 rounded-sm overflow-hidden bg-[#080028]/100 hover:bg-[#080028]/66 transition-all w-full mx-auto mb-3'>
+  <div className='group border border-white/20 rounded-sm overflow-hidden bg-[#080028]/100 hover:bg-[#080028]/66 transition-all w-full mx-auto mb-3'>
     <div className='p-2 space-y-2'>
       <header>
         <h2 className='text-xl font-normal text-white mb-2'>{project.title}</h2>
         <div className='flex flex-wrap gap-2'>
           {project.techStack.map((tech, i) => (
-            <span key={i} className='px-2 py-1 text-xs font-light rounded-full bg-white/10 text-white/75'>
+            <span key={i} className='px-2 py-1 text-xs font-light rounded-full bg-white/10 text-white/85'>
               {tech}
             </span>
           ))}
@@ -67,7 +67,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
 
         <div className='md:w-1/2 flex flex-col justify-between'>
-          <p className='text-white/85 text-md leading-relaxed'>
+          <p className='text-white text-md leading-relaxed'>
             {project.description}
           </p>
 
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
                 <a 
                     href={project.url}
                     target='_blank'
-                    className='flex items-center gap-1 text-sm text-white/85 hover:text-white transition-all'
+                    className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
                 >
                     <FaLink />
                     <span className='font-light'>Live demo</span>
@@ -86,7 +86,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
               <a 
                     href={project.github}
                     target='_blank'
-                    className='flex items-center gap-1 text-sm text-white/75 hover:text-white transition-all'
+                    className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
                 >
                     <FaGithub />
                     <span className='font-light'>Source</span>
@@ -96,7 +96,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
       </div>
     </div>
-  </article>
+  </div>
 );
 
 export default function Projects() {
