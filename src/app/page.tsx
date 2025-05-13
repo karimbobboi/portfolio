@@ -140,7 +140,7 @@ export default function Home() {
       </div>
 
       <div className='relative py-20'>
-        <div className='flex justify-center mb-12 mt-15'>
+        <div className='flex justify-center mb-12 mt-10'>
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-4'>
               <div className='space-y-2'>

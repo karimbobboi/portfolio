@@ -16,7 +16,7 @@ export default function NavBar(){
                     <div className="text-sm lg:flex-grow">
                         <a
                             className={
-                                `block cursor-pointer lg:inline-block mt-1 text-[#efdfba] mr-4 ${pathname === '/' ? 'font-semibold' : 'hover:text-white'}`
+                                `block cursor-pointer lg:inline-block mt-1 mr-4 ${pathname === '/' ? 'text-[#f5e5c0] font-semibold' : 'text-[#efdfba] hover:text-white'}`
                             }
                             onClick={() => {
                                 if(!router)
@@ -28,7 +28,7 @@ export default function NavBar(){
                         </a>
                         <a
                             className={
-                                `block cursor-pointer mt-4 lg:inline-block lg:mt-0 text-[#efdfba] mr-4 ${pathname.includes('projects') ? 'font-semibold' : 'hover:text-white'}`
+                                `block cursor-pointer mt-4 lg:inline-block lg:mt-0 mr-4 ${pathname.includes('projects') ? 'text-[#f5e5c0] font-semibold' : 'text-[#efdfba] hover:text-white'}`
                             }
                             onClick={() => {
                                 if(!router)
@@ -40,7 +40,7 @@ export default function NavBar(){
                         </a>
                         <a 
                             className={
-                                `block cursor-pointer mt-4 lg:inline-block lg:mt-0 text-[#efdfba] mr-4 ${pathname.includes('interests') ? 'font-semibold' : 'hover:text-white'}`
+                                `block cursor-pointer mt-4 lg:inline-block lg:mt-0 mr-4 ${pathname.includes('interests') ? 'text-[#f5e5c0] font-semibold' : 'text-[#efdfba] hover:text-white'}`
                             }
                             onClick={() => {
                                 if(!router)
