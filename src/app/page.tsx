@@ -47,7 +47,7 @@ const education: Education[] = [
     description: [
       "Awarded the Rhodri J. Jassim Prize for Best Performing Student in Part I Examinations",
       "Achieved a First-Class grade for final year project",
-      "Relevant coursework: Design, Implementation and Analysis of Algorithms, Advanced Web Applications Development, Object Oriented Programming, Principles of Database Systems, UX Design, Software Quality Assurance"
+      "Relevant modules: Design, Implementation and Analysis of Algorithms, Advanced Web Applications Development, Object Oriented Programming, Principles of Database Systems, UX Design, Software Quality Assurance"
     ]
   },
   {
@@ -55,18 +55,26 @@ const education: Education[] = [
     uni: "University of Leeds",
     grade: "Transferred",
     period: "2020 — 2022",
-    description: [""]
+    description: [
+      "Consistently achieved top marks in programming and algorithmic modules, including some of the highest scores in class",
+      "Built a strong foundation in object-oriented programming, procedural programming, data structures, and algorithm design",
+      "Relevant modules: Operating Systems, Procedural Programming, Networks, Computer Architecture"
+    ]
   }
 ];
 
-const ContactLink = ({ href, icon }: { href: string; icon: React.ReactNode }) => (
-  <a 
-    href={href}
-    target='_blank'
-    className='text-white/75 hover:text-[#2053d0] transition-colors'
-  >
-    {icon}
-  </a>
+const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactNode; tooltip: string }) => (
+  <div className='has-tooltip'>
+    <a 
+      href={href}
+      target='_blank'
+      className='text-white/75 hover:text-[#2053d0] transition-colors'
+    >
+      {icon}
+    </a>
+    {/* On hover, show tooltip */}
+    <span className='tooltip rounded p-1 bg-white/30 text-xs text-white/75 -mb-20'>{tooltip}</span>
+  </div>
 );
 
 const TabContent = ({ activeTab }: { activeTab: 'experience' | 'education' }) => {
@@ -131,7 +139,7 @@ export default function Home() {
         <Background />
       </div>
 
-      <div className='relative pt-20 pb-10'>
+      <div className='relative py-20'>
         <div className='flex justify-center mb-12 mt-15'>
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-4'>
@@ -148,18 +156,22 @@ export default function Home() {
                 <ContactLink 
                   href="mailto:abdulkarimbobboi@gmail.com"
                   icon={<FaEnvelope className="w-[2.5rem] h-[2.5rem]" />}
+                  tooltip="Send me an email"
                 />
                 <ContactLink 
                   href="https://github.com/karimbobboi"
                   icon={<FaGithub className="w-[2.5rem] h-[2.5rem]" />}
+                  tooltip="GitHub profile"
                 />
                 <ContactLink 
                   href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/"
                   icon={<FaLinkedin className="w-[2.5rem] h-[2.5rem]" />}
+                  tooltip="LinkedIn profile"
                 />
                 <ContactLink 
                   href="/cv.pdf"
                   icon={<FaFileAlt className="w-[2.5rem] h-[2.5rem]" />}
+                  tooltip="View resume"
                 />
               </div>
             </div>
