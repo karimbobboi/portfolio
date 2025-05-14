@@ -182,12 +182,12 @@ export default function Home() {
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-3'>
               <h1 className='text-3xl font-bold text-white'>Experience</h1>
-              <div className='flex space-x-4 border-b border-white/20'>
+              <div className='flex space-x-4 border-b border-gray-800'>
                 <button
                   onClick={() => setActiveTab('experience')}
                   className={`px-2 text-sm font-medium transition-colors ${
                     activeTab === 'experience' 
-                      ? 'text-white border-b-2 border-white' 
+                      ? 'text-white border-b-2 border-gray-200' 
                       : 'text-white/50 hover:text-white'
                   }`}
                 >
