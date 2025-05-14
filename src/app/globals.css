@@ -22,3 +22,12 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
+.background-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 5vh;
+  bottom: 0;
+  z-index: -10;
+}

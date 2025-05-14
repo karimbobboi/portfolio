@@ -135,7 +135,7 @@ export default function Home() {
         <NavBar />
       </header>
       
-      <div className='fixed inset-x-0 top-[60px] bottom-0 -z-10'>
+      <div className='background-wrapper'>
         <Background />
       </div>
 
