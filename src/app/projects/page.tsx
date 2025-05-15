@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: "9X9",
     description: "A lightweight web app that lets users download high-resolution images from IIIF manifests as either PDF or ZIP files. Ideal for quick access to digitised archival materials.",
     techStack: ["TypeScript", "Bootstrap", "React.js"],
-    image: "/projects/9x9.png",
+    image: "/projects/iiif.png",
     github: "https://github.com/yourusername/portfolio",
     url: 'https://karimbobboi.github.io/9X9/'
   },
