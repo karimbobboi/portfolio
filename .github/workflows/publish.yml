@@ -19,7 +19,6 @@ jobs:
       - name: Build Next.js project
         run: |
           npx next build
-          npx next export
 
       - name: Deploy to gh-pages branch
         uses: JamesIves/github-pages-deploy-action@v4
