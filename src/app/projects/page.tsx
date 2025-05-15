@@ -16,6 +16,8 @@ interface Project {
   featured?: boolean;
 }
 
+const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+
 const projects: Project[] = [
   {
     title: "Go Game",
@@ -30,8 +32,8 @@ const projects: Project[] = [
     title: "9X9",
     description: "A lightweight web app that lets users download high-resolution images from IIIF manifests as either PDF or ZIP files. Ideal for quick access to digitised archival materials.",
     techStack: ["TypeScript", "Bootstrap", "React.js"],
-    image: "/projects/iiif.png",
-    github: "https://github.com/yourusername/portfolio",
+    image: "/portfolio/projects/iiif.png",
+    github: "https://github.com/karimbobboi/9X9",
     url: 'https://karimbobboi.github.io/9X9/'
   },
   {
@@ -39,7 +41,7 @@ const projects: Project[] = [
     description: "A personal portfolio website to showcase my projects, skills, and experience in software development.",
     techStack: ["Next.js", "TypeScript", "TailwindCSS", "React.js"],
     image: "/projects/portfolio.png",
-    github: "https://github.com/yourusername/portfolio"
+    github: "https://github.com/karimbobboi/portfolio"
   },
 ];
 
@@ -61,7 +63,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         <div className='md:w-1/2'>
           <div className='relative aspect-video overflow-hidden rounded-sm border border-gray-800'>
             <Image 
-              src={project.image} 
+              src={`${basePath}${project.image}`} 
               alt={`Screenshot of ${project.title}`}
               className='w-full h-full object-cover'
               width={100} height={100}
