@@ -22,7 +22,7 @@ const projects: Project[] = [
     title: "Go Game",
     description: "A real-time web-based implementation of the board game of Go. It supports different board sizes and includes features like score calculation, move checking and special game rules like seki and ladder detection.",
     techStack: ["Vue.js", "JavaScript", "Bootstrap", "HTML5 Canvas"],
-    image: "https://karimbobboi.github.io/portfolio/projects/go-game.png",
+    image: "/portfolio/projects/go-game.png",
     github: "https://github.com/karimbobboi/Go-Game",
     url: 'https://karimbobboi.github.io/Go-Game/',
     featured: true
@@ -39,7 +39,7 @@ const projects: Project[] = [
     title: "Portfolio website",
     description: "A personal portfolio website to showcase my projects, skills, and experience in software development.",
     techStack: ["Next.js", "TypeScript", "TailwindCSS", "React.js"],
-    image: "/projects/portfolio.png",
+    image: "/portfolio/projects/portfolio.png",
     github: "https://github.com/karimbobboi/portfolio"
   },
 ];

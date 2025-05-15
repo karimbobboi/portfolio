@@ -23,9 +23,6 @@ interface Education {
   description: string[];
 }
 
-const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
-console.log(basePath);
-
 const experiences: Experience[] = [
   {
     title: "Software Engineer Intern",
@@ -173,7 +170,7 @@ export default function Home() {
                   tooltip="LinkedIn profile"
                 />
                 <ContactLink 
-                  href={`${basePath}/cv.pdf`}
+                  href="/cv.pdf"
                   icon={<FaFileAlt className="w-[2.5rem] h-[2.5rem]" />}
                   tooltip="View resume"
                 />
