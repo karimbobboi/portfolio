@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         <div className='md:w-1/2'>
           <div className='relative aspect-video overflow-hidden rounded-sm border border-gray-800'>
             <img 
-              src={`${basePath}${project.image}`} 
+              src={`${project.image}`} 
               alt={`Screenshot of ${project.title}`}
               className='w-full h-full object-cover'
               width={100} height={100}
