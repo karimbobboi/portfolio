@@ -4,7 +4,6 @@ import Background from '../components/Background';
 import NavBar from '../components/NavBar';
 import { FaGithub, FaLink } from "react-icons/fa";
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface Project {
   title: string;
@@ -62,7 +61,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       <div className='flex flex-col md:flex-row gap-4'>
         <div className='md:w-1/2'>
           <div className='relative aspect-video overflow-hidden rounded-sm border border-gray-800'>
-            <Image 
+            <img 
               src={`${basePath}${project.image}`} 
               alt={`Screenshot of ${project.title}`}
               className='w-full h-full object-cover'
