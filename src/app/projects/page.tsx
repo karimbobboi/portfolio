@@ -102,7 +102,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
 export default function Projects() {
   return (
     <main className='min-h-screen relative'>
-      <header className="sticky top-0 z-50">
+      <header>
         <NavBar />
       </header>
       

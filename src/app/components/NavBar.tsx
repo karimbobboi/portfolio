@@ -13,7 +13,7 @@ export default function NavBar(){
     ]
 
     return(
-        <nav className="border-none bg-black">
+        <nav className="border-none bg-black fixed top-0 z-50 w-full">
             <div className="bg-[#00187e] relative z-10 flex items-center justify-between flex-wrap backdrop-blur-sm p-2 rounded-md">
                 <div className="flex items-center flex-shrink-0 text-white mr-6">
                     <span className="font-semibold text-xl tracking-tight">Abdulkarim Bobboi</span>

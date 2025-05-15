@@ -131,7 +131,7 @@ export default function Home() {
 
   return (
     <main className='min-h-screen relative'>
-      <header className="sticky top-0 z-50">
+      <header>
         <NavBar />
       </header>
       
