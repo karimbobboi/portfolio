@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Background from './components/Background';
 import NavBar from './components/NavBar';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa';
+import Link from 'next/link'
 
 interface Experience {
   title: string;
@@ -65,13 +66,13 @@ const education: Education[] = [
 
 const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactNode; tooltip: string }) => (
   <div className='has-tooltip'>
-    <a 
+    <Link
       href={href}
       target='_blank'
       className='text-white/75 hover:text-[#2053d0] transition-colors'
     >
       {icon}
-    </a>
+    </Link>
     {/* On hover, show tooltip */}
     <span className='tooltip rounded p-1 bg-white/30 text-xs text-white/75 -mb-20'>{tooltip}</span>
   </div>

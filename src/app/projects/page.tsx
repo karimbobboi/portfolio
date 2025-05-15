@@ -3,6 +3,8 @@
 import Background from '../components/Background';
 import NavBar from '../components/NavBar';
 import { FaGithub, FaLink } from "react-icons/fa";
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface Project {
   title: string;
@@ -58,7 +60,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       <div className='flex flex-col md:flex-row gap-4'>
         <div className='md:w-1/2'>
           <div className='relative aspect-video overflow-hidden rounded-sm border border-gray-800'>
-            <img 
+            <Image 
               src={project.image} 
               alt={`Screenshot of ${project.title}`}
               className='w-full h-full object-cover'
@@ -73,24 +75,24 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
           <div className='flex gap-4 mt-2 ms-auto'>
             {project.url && (
-                <a 
+                <Link 
                     href={project.url}
                     target='_blank'
                     className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
                 >
                     <FaLink />
                     <span className='font-light'>Live demo</span>
-                </a>
+                </Link>
             )}
             {project.github && (
-              <a 
-                    href={project.github}
-                    target='_blank'
-                    className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
-                >
-                    <FaGithub />
-                    <span className='font-light'>Source</span>
-                </a>
+              <Link 
+                  href={project.github}
+                  target='_blank'
+                  className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
+              >
+                  <FaGithub />
+                  <span className='font-light'>Source</span>
+              </Link>
             )}
           </div>
         </div>
