@@ -22,16 +22,23 @@ const projects: Project[] = [
     title: "Go Game",
     description: "A real-time web-based implementation of the board game of Go. It supports different board sizes and includes features like score calculation, move checking and special game rules like seki and ladder detection.",
     techStack: ["Vue.js", "JavaScript", "Bootstrap", "HTML5 Canvas"],
-    image: "/portfolio/projects/go-game.png",
+    image: `${basePath}/projects/go-game.png`,
     github: "https://github.com/karimbobboi/Go-Game",
     url: 'https://karimbobboi.github.io/Go-Game/',
     featured: true
   },
   {
+    title: "Conway's Game of Life",
+    description: "A modular C program that simulates Conway's Game of Life. I built it for the COMP1921 programming project while I was studying at the University of Leeds.",
+    techStack: ["C", "CMake", "SDL"],
+    image: `${basePath}/projects/game-of-life.gif`,
+    github: "https://github.com/karimbobboi/game-of-life"
+  },
+  {
     title: "9X9",
     description: "A lightweight web app that lets users download high-resolution images from IIIF manifests as either PDF or ZIP files. Ideal for quick access to digitised archival materials.",
     techStack: ["TypeScript", "Bootstrap", "React.js"],
-    image: "/portfolio/projects/iiif.png",
+    image: `${basePath}/projects/iiif.png`,
     github: "https://github.com/karimbobboi/9X9",
     url: 'https://karimbobboi.github.io/9X9/'
   },
@@ -39,7 +46,7 @@ const projects: Project[] = [
     title: "Portfolio website",
     description: "A personal portfolio website to showcase my projects, skills, and experience in software development.",
     techStack: ["Next.js", "TypeScript", "TailwindCSS", "React.js"],
-    image: "/portfolio/projects/portfolio.png",
+    image: `${basePath}/projects/portfolio.png`,
     github: "https://github.com/karimbobboi/portfolio"
   },
 ];
@@ -64,7 +71,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
             <img 
               src={`${project.image}`} 
               alt={`Screenshot of ${project.title}`}
-              className='w-full h-full object-cover'
+              className='w-full h-full object-contain'
               width={100} height={100}
             />
           </div>
