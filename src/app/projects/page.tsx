@@ -35,6 +35,13 @@ const projects: Project[] = [
     github: "https://github.com/karimbobboi/game-of-life"
   },
   {
+    title: "180connect",
+    description: "A mass email platform built for 180 Degrees Consulting Sheffield. It allows the team easily send personalised messages to charities and non-profits across the UK. Developed in a small team of two and now being adopted by the organisation.",
+    techStack: ["JavaScript", "React.js", "FastAPI", "Python", "PostgreSQL"],
+    image: `${basePath}/projects/180connect.png`,  
+    url: 'https://180-connect.vercel.app/'
+  },
+  {
     title: "9X9",
     description: "A lightweight web app that lets users download high-resolution images from IIIF manifests as either PDF or ZIP files. Ideal for quick access to digitised archival materials.",
     techStack: ["TypeScript", "Bootstrap", "React.js"],
