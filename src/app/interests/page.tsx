@@ -313,7 +313,7 @@ export default function Interests() {
         <Background />
       </div>
 
-      <div className='container mx-auto px-4 py-16 w-full max-w-3xl space-y-4'>
+      <div className='container mx-auto px-4 py-16 mt-20 w-full max-w-3xl space-y-4'>
         {all_books && (
           <div className=''>
             <BooksSection books={all_books} />

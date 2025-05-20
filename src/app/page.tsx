@@ -144,7 +144,7 @@ export default function Home() {
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-4'>
               <div className='space-y-2'>
-                <h1 className='text-3xl font-bold text-white'>Hello, I'm Abdulkarim.</h1>
+                <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50'>Hello, I'm Abdulkarim.</h1>
                 <div className='space-y-4'>
                   <p className='text-white/100 leading-relaxed my-3'>
                   I'm a Computing graduate and software engineer based in Sheffield, UK. I enjoy building clean, functional applications with a strong focus on user experience. I like working across the stack, from designing interfaces to connecting APIs and managing data. While I'm currently focused on full-stack web development, I'm always exploring new areas of computer science and looking for new things to learn.
@@ -181,7 +181,7 @@ export default function Home() {
         <div className='flex justify-center mt-10'>
           <div className='w-full max-w-3xl p-3 rounded-lg'>
             <div className='space-y-3'>
-              <h1 className='text-3xl font-bold text-white'>Experience</h1>
+              <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50'>Experience</h1>
               <div className='flex space-x-4 border-b border-gray-800'>
                 <button
                   onClick={() => setActiveTab('experience')}

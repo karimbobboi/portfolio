@@ -128,8 +128,8 @@ export default function Projects() {
         <Background />
       </div>
 
-      <div className='container mx-auto px-4 py-16 w-full max-w-4xl'>
-        <h1 className='text-3xl font-bold text-white mb-4'>Projects</h1>
+      <div className='container mx-auto mt-20 px-4 py-16 w-full max-w-4xl'>
+        <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50 mb-4'>Projects</h1>
         
         <div className='space-y-1'>
           {projects.map((project, index) => (
