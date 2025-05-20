@@ -124,7 +124,7 @@ export default function Projects() {
         <NavBar />
       </header>
       
-      <div className='background-wrapper'>
+      <div className='background-wrapper mt-1'>
         <Background />
       </div>
 

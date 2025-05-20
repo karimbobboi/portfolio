@@ -135,7 +135,7 @@ export default function Home() {
         <NavBar />
       </header>
       
-      <div className='background-wrapper'>
+      <div className='background-wrapper mt-1'>
         <Background />
       </div>
 

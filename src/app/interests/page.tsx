@@ -323,7 +323,7 @@ export default function Interests() {
         <NavBar />
       </header>
       
-      <div className='background-wrapper'>
+      <div className='background-wrapper mt-1'>
         <Background />
       </div>
 

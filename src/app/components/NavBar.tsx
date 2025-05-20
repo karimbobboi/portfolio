@@ -21,6 +21,33 @@ export default function NavBar(){
                     <span className="font-semibold text-lg md:text-xl tracking-tight">Abdulkarim Bobboi</span>
                 </div>
 
+                <div className={`
+                    w-full hidden lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out
+                    ${barOpen ? 'block' : 'hidden'}
+                `}>
+                    <div className="lg:flex-grow">
+                        <>
+                        {pages && pages.map((page, i) => (
+                            <a 
+                                key={i}
+                                className={
+                                    `block cursor-pointer lg:inline-block mr-4 ${pathname === page.path
+                                    ? 'text-[#f5e5c0] font-semibold text-md' 
+                                    : 'text-[#efdfba] hover:text-white text-sm'}`
+                            }
+                            onClick={() => {
+                                if(!router)
+                                    return;
+                                router.push(page.path)
+                            }}
+                        >
+                            {page.name}
+                        </a>
+                        ))}
+                        </>
+                    </div>
+                </div>
+
                 <div className="flex items-center gap-3 sm:ml-auto">
                     <Link 
                         href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/" 
@@ -43,21 +70,21 @@ export default function NavBar(){
                 <div className="block lg:hidden">
                     <button
                         onClick={() => setBarOpen(!barOpen)}
-                        className="flex items-center px-3 py-2 text-[#efdfba] hover:text-white"
+                        className="flex items-center px-3 text-[#efdfba] hover:text-white"
                     >
                         {barOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
 
                 <div className={`
-                    w-full lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out
+                    w-full lg:flex lg:hidden lg:items-center lg:w-auto transition-all duration-300 ease-in-out
                     ${barOpen ? 'block' : 'hidden'}
                 `}>
                     <div className="lg:flex-grow flex flex-col lg:flex-row">
                         {pages.map((page, i) => (
                             <a  key={i}
                                 className={`
-                                    block py-2 lg:py-0 lg:inline-block lg:mt-0 mr-4
+                                    block py-1 lg:py-0 lg:inline-block lg:mt-0 mr-4
                                     ${pathname === page.path
                                         ? 'text-[#f5e5c0] font-semibold text-md' 
                                         : 'text-[#efdfba] hover:text-white text-sm'}
