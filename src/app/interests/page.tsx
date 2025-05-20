@@ -3,6 +3,7 @@
 import Background from '../components/Background';
 import NavBar from '../components/NavBar';
 import { useEffect, useState } from 'react';
+import { FaLastfm } from "react-icons/fa";
 
 interface TrackInfo {
   name: string,
@@ -99,7 +100,20 @@ const SongsSection = ({ tracks }: { tracks: TrackInfo[] }) => (
       <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
         Music
       </h3>
-      <p className='text-[#efdfba] text-opacity-50 font-extralight'>Some of my recently played songs</p>
+      <div className='flex justify-between items-center'>
+        <p className='text-[#efdfba] text-opacity-50 font-extralight'>
+          Some of my recently played songs
+        </p>
+        <div className='flex items-center gap-2'>
+          <span className='text-white/75 text-sm'>via</span>
+          <a href="https://www.last.fm/api" 
+            target="_blank" 
+            className='flex items-center'
+          >
+            <FaLastfm className='w-5 h-5 text-white hover:text-[#E00000]' />
+          </a>
+        </div>
+      </div>
     </div>
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1 pb-1">
       {tracks.slice(0, 5).map((track, index) => (
