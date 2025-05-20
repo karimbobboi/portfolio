@@ -21,6 +21,13 @@ interface BookInfo {
   goodreadsUrl: string
 }
 
+interface FilmInfo {
+  name: string,
+  year: string,
+  director: string,
+  poster: string
+}
+
 const FM_KEY = 'ff550540c3ca6d503ae41b204d1ae19a';
 const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
 
@@ -55,13 +62,40 @@ const all_books: BookInfo[] = [
   }
 ];
 
+const all_films: FilmInfo[] = [
+  {
+    name: '12 Angry Men',
+    director: 'Sidney Lumet',
+    year: '1957',
+    poster: `${basePath}/films/12-angry-men.jpg`
+  },
+  {
+    name: 'The King of Comedy',
+    director: 'Martin Scorsese',
+    year: '1982',
+    poster: `${basePath}/films/king-of-comedy.jpeg`
+  },
+  {
+    name: 'Lawrence of Arabia',
+    director: 'David Lean',
+    year: '1962',
+    poster: `${basePath}/films/lawrence-of-arabia.jpg`
+  },
+  {
+    name: 'Red Beard',
+    director: 'Akira Kurosawa',
+    year: '1965',
+    poster: `${basePath}/films/red-beard.png`
+  }
+];
+
 const SongsSection = ({ tracks }: { tracks: TrackInfo[] }) => (
   <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-[#080028]/80' 
     style={{
       scrollbarWidth: 'none',
     }}
   >
-    <div className='mb-2 sticky border-b pb-2'>
+    <div className='sticky border-b pb-2'>
       <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
         Music
       </h3>
@@ -107,7 +141,7 @@ const BooksSection = ({ books }: { books: BookInfo[] }) => (
       scrollbarWidth: 'none',
     }}
   >
-    <div className='mb-2 sticky border-b pb-2'>
+    <div className='sticky border-b pb-2'>
       <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
         Books
       </h3>
@@ -139,6 +173,48 @@ const BooksSection = ({ books }: { books: BookInfo[] }) => (
             </p>
             <p className="text-xs text-white/75 truncate">
               {book.year}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const FilmsSection = ({ films }: {films: FilmInfo[]}) => (
+  <div className='border rounded-md p-2 max-h-[70vh] overflow-y-scroll bg-[#080028]/80' 
+    style={{
+      scrollbarWidth: 'none',
+    }}
+  >
+    <div className='sticky border-b pb-2'>
+      <h3 className='text-[#efdfba] font-normal text-2xl p-0'>
+        Films
+      </h3>
+      <p className='text-[#efdfba] text-opacity-50 font-extralight'>My favourite films</p>
+    </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-1">
+      {films.map((film, index) => (
+        <div 
+          key={index}
+          className='cursor-pointer group hover:bg-white/10 rounded-sm p-1 transition-colors'
+        >
+          <div className="aspect-[2/3] mb-1 relative">
+            <img 
+              src={film.poster} 
+              alt={film.name}
+              className="w-full h-full object-cover shadow-lg"
+            />
+          </div>
+          <div className="">
+            <h3 className="font-medium text-sm text-white truncate">
+              {film.name}
+            </h3>
+            <p className="text-xs text-white/75 truncate">
+              {film.director}
+            </p>
+            <p className="text-xs text-white/75 truncate">
+              {film.year}
             </p>
           </div>
         </div>
@@ -241,6 +317,12 @@ export default function Interests() {
         {all_books && (
           <div className=''>
             <BooksSection books={all_books} />
+          </div>
+        )}
+
+        {all_films && (
+          <div className=''>
+            <FilmsSection films={all_films} />
           </div>
         )}
 
