@@ -1,10 +1,12 @@
 import { useRouter, usePathname } from "next/navigation";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function NavBar(){
     const router = useRouter();
     const pathname = usePathname();
+    const [barOpen, setBarOpen] = useState(false);
 
     const pages = [
         {name: 'Home', path: '/'},
@@ -15,44 +17,61 @@ export default function NavBar(){
     return(
         <nav className="border-none bg-black fixed top-0 z-50 w-full">
             <div className="bg-[#00187e] relative z-10 flex items-center justify-between flex-wrap backdrop-blur-sm p-2 rounded-md">
-                <div className="flex items-center flex-shrink-0 text-white mr-6">
-                    <span className="font-semibold text-xl tracking-tight">Abdulkarim Bobboi</span>
+                <div className="hidden sm:flex items-center flex-shrink-0 text-white mr-6">
+                    <span className="font-semibold text-lg md:text-xl tracking-tight">Abdulkarim Bobboi</span>
                 </div>
-                <div className="w-full h-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                    <div className="lg:flex-grow">
-                        <>
-                        {pages && pages.map((page, i) => (
-                            <a 
-                                key={i}
-                                className={
-                                    `block cursor-pointer lg:inline-block mt-1 mr-4 ${pathname === page.path
-                                    ? 'text-[#f5e5c0] font-semibold text-md' 
-                                    : 'text-[#efdfba] hover:text-white text-sm'}`
-                            }
-                            onClick={() => {
-                                if(!router)
-                                    return;
-                                router.push(page.path)
-                            }}
-                        >
-                            {page.name}
-                        </a>
+
+                <div className="flex items-center gap-3 sm:ml-auto">
+                    <Link 
+                        href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/" 
+                        target="_blank" 
+                        className="text-[#efdfba] hover:text-white transition-colors"
+                    >
+                        <FaLinkedin className="text-[1.5rem]" />
+                    </Link>
+
+                    <Link 
+                        href="https://github.com/karimbobboi" 
+                        target="_blank" 
+                        className="text-[#efdfba] hover:text-white transition-colors"
+                    >
+                        <FaGithub className="text-[1.5rem]" />
+                    </Link>
+                </div>
+
+                {/* Menu Button */}
+                <div className="block lg:hidden">
+                    <button
+                        onClick={() => setBarOpen(!barOpen)}
+                        className="flex items-center px-3 py-2 text-[#efdfba] hover:text-white"
+                    >
+                        {barOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                    </button>
+                </div>
+
+                <div className={`
+                    w-full lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out
+                    ${barOpen ? 'block' : 'hidden'}
+                `}>
+                    <div className="lg:flex-grow flex flex-col lg:flex-row">
+                        {pages.map((page, i) => (
+                            <a  key={i}
+                                className={`
+                                    block py-2 lg:py-0 lg:inline-block lg:mt-0 mr-4
+                                    ${pathname === page.path
+                                        ? 'text-[#f5e5c0] font-semibold text-md' 
+                                        : 'text-[#efdfba] hover:text-white text-sm'}
+                                `}
+                                onClick={() => {
+                                    if(!router) 
+                                        return;
+                                    router.push(page.path);
+                                    setBarOpen(false);
+                                }}
+                            >
+                                {page.name}
+                            </a>
                         ))}
-
-                        <Link 
-                            href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/" target="_blank" 
-                            className="float-end block cursor-pointer lg:inline-block lg:mt-0 text-[#efdfba] hover:text-white"
-                        >
-                            <FaLinkedin className="text-[1.7rem]" />
-                        </Link>
-
-                        <Link 
-                            href="https://github.com/karimbobboi" target="_blank" 
-                            className="float-end block cursor-pointer lg:inline-block lg:mt-0 text-[#efdfba] mr-3 hover:text-white"
-                        >
-                            <FaGithub className="text-[1.7rem]" />
-                        </Link>
-                        </>
                     </div>
                 </div>
             </div>
