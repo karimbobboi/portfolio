@@ -9,7 +9,7 @@ export default function NavBar(){
     const pages = [
         {name: 'Home', path: '/'},
         {name: 'Projects', path: '/projects'},
-        // {name: 'Interests', path: '/interests'},
+        {name: 'Interests', path: '/interests'},
     ]
 
     return(
