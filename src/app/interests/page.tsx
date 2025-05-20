@@ -22,34 +22,35 @@ interface BookInfo {
 }
 
 const FM_KEY = 'ff550540c3ca6d503ae41b204d1ae19a';
+const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
 
 const all_books: BookInfo[] = [
   {
     name: 'The Name of the Rose',
     author: 'Umberto Eco',
     year: '1980',
-    cover: '/book-covers/the_name_of_the_rose.jpg',
+    cover: `${basePath}/book-covers/the_name_of_the_rose.jpg`,
     goodreadsUrl: 'https://www.goodreads.com/book/show/119073.The_Name_of_the_Rose'
   },
   {
     name: 'One Hundred Years of Solitude',
     author: 'Gabriel García Márquez',
     year: '1967',
-    cover: '/book-covers/solitude.jpg',
+    cover: `${basePath}/book-covers/solitude.jpg`,
     goodreadsUrl: 'https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude'
   },
   {
     name: 'Vagabond',
     author: 'Takehiko Inoue',
     year: '1999',
-    cover: '/book-covers/vagabond.jpg',
+    cover: `${basePath}/book-covers/vagabond.jpg`,
     goodreadsUrl: 'https://www.goodreads.com/book/show/251912.Vagabond_Volume_1'
   },
   {
     name: 'Animal Farm',
     author: 'George Orwell',
     year: '1945',
-    cover: '/book-covers/animal_farm.jpg',
+    cover: `${basePath}/book-covers/animal_farm.jpg`,
     goodreadsUrl: 'https://www.goodreads.com/book/show/170448.Animal_Farm'
   }
 ];
@@ -191,7 +192,7 @@ export default function Interests() {
   
   const fetchRecentTracks = async () => {
     const lastfmUsername = 'bobboi04';
-    const baseurl = 'http://ws.audioscrobbler.com/2.0/';
+    const baseurl = 'https://ws.audioscrobbler.com/2.0/';
 
     try {
       const url = `${baseurl}?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${FM_KEY}&format=json`;
