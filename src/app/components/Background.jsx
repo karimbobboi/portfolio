@@ -9,6 +9,7 @@ const Background = memo(function Background() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    console.log("here")
     if (!gradientRef.current) {
       gradientRef.current = new Gradient();
       gradientRef.current.initGradient("#gradient-canvas");
