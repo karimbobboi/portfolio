@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Maven_Pro } from "next/font/google";
 import "./globals.css";
-import Background from "./components/Background";
 import NavBar from "./components/NavBar";
-import { Suspense } from "react";
+import { BackgroundProvider } from "./components/BackgroundProvider";
 
 const maven_pro = Maven_Pro({
   subsets: ["latin"],
@@ -22,15 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={maven_pro.className}>
       <body>
-        <div>
-          <NavBar />
-        </div>
-        <Suspense>
-          <div className='background-wrapper mt-1'>
-            <Background />
+        <BackgroundProvider>
+          <div>
+            <NavBar />
           </div>
-        </Suspense>
-        {children}
+          {children}
+        </BackgroundProvider>
       </body>
     </html>
   );
