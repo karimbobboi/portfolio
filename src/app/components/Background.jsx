@@ -8,12 +8,14 @@ const Background = memo(function Background() {
   const gradientRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  let gradientInitialized = false;
+
   useEffect(() => {
     console.log("here")
-    if (!gradientRef.current) {
+    if (!gradientRef.current && !gradientInitialized) {
       gradientRef.current = new Gradient();
       gradientRef.current.initGradient("#gradient-canvas");
-      
+      gradientInitialized = true;
       // add delay before showing gradient
       setTimeout(() => {
         setIsVisible(true);
