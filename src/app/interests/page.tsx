@@ -319,14 +319,6 @@ export default function Interests() {
 
   return (
     <main className='min-h-screen relative'>
-      <header>
-        <NavBar />
-      </header>
-      
-      <div className='background-wrapper mt-1'>
-        <Background />
-      </div>
-
       <div className='container mx-auto px-4 py-16 mt-20 w-full max-w-3xl space-y-4'>
         {all_books && (
           <div className=''>

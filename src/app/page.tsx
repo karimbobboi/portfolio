@@ -131,14 +131,6 @@ export default function Home() {
 
   return (
     <main className='min-h-screen relative'>
-      <header>
-        <NavBar />
-      </header>
-      
-      <div className='background-wrapper mt-1'>
-        <Background />
-      </div>
-
       <div className='relative py-20'>
         <div className='flex justify-center mb-12 mt-8'>
           <div className='w-full max-w-3xl p-3 rounded-lg'>

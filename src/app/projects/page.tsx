@@ -120,14 +120,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
 export default function Projects() {
   return (
     <main className='min-h-screen relative'>
-      <header>
-        <NavBar />
-      </header>
-      
-      <div className='background-wrapper mt-1'>
-        <Background />
-      </div>
-
       <div className='container mx-auto mt-20 px-4 py-16 w-full max-w-4xl'>
         <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50 mb-4'>Projects</h1>
         
