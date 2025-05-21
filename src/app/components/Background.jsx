@@ -9,13 +9,6 @@ const Background = memo(function Background() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // function to cleanup gradient instance
-    const cleanupFunction = () => {
-      if (gradientRef.current) {
-        gradientRef.current = null;
-      }
-    }
-
     if (!gradientRef.current) {
       gradientRef.current = new Gradient();
       gradientRef.current.initGradient("#gradient-canvas");
@@ -25,9 +18,6 @@ const Background = memo(function Background() {
         setIsVisible(true);
       }, 100);
     }
-
-    // run when component unmounts
-    return cleanupFunction;
   }, []);
 
   return (
