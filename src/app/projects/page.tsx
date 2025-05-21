@@ -1,7 +1,5 @@
 "use client"
 
-import Background from '../components/Background';
-import NavBar from '../components/NavBar';
 import { FaGithub, FaLink } from "react-icons/fa";
 import Link from 'next/link';
 

@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-import Background from './components/Background';
-import NavBar from './components/NavBar';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa';
 
 interface Experience {

@@ -1,7 +1,5 @@
 "use client"
 
-import Background from '../components/Background';
-import NavBar from '../components/NavBar';
 import { useEffect, useState } from 'react';
 import { FaLastfm } from "react-icons/fa";
 
