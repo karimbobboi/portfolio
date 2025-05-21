@@ -29,21 +29,17 @@ export default function NavBar(){
                     <div className="lg:flex-grow">
                         <>
                         {pages && pages.map((page, i) => (
-                            <a 
+                            <Link 
+                                href={page.path}
                                 key={i}
                                 className={
                                     `block cursor-pointer lg:inline-block mr-4 ${pathname === page.path
                                     ? 'text-[#f5e5c0] font-semibold text-md' 
                                     : 'text-[#efdfba] hover:text-white text-sm'}`
                             }
-                            onClick={() => {
-                                if(!router)
-                                    return;
-                                router.push(page.path)
-                            }}
                         >
                             {page.name}
-                        </a>
+                        </Link>
                         ))}
                         </>
                     </div>
@@ -83,7 +79,8 @@ export default function NavBar(){
                 `}>
                     <div className="lg:flex-grow flex flex-col lg:flex-row">
                         {pages.map((page, i) => (
-                            <a  key={i}
+                            <Link key={i}
+                                href={page.path}
                                 className={`
                                     block py-1 lg:py-0 lg:inline-block lg:mt-0 mr-4
                                     ${pathname === page.path
@@ -91,14 +88,11 @@ export default function NavBar(){
                                         : 'text-[#efdfba] hover:text-white text-sm'}
                                 `}
                                 onClick={() => {
-                                    if(!router) 
-                                        return;
-                                    router.push(page.path);
                                     setBarOpen(false);
                                 }}
                             >
                                 {page.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
