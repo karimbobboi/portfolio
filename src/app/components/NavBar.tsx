@@ -1,12 +1,11 @@
 "use client"
 
-import { useRouter, usePathname} from "next/navigation";
+import { usePathname} from "next/navigation";
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function NavBar(){
-    const router = useRouter();
     const pathname = usePathname();
     const [barOpen, setBarOpen] = useState(false);
     const pages = [

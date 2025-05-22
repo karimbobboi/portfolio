@@ -15,7 +15,7 @@ export function BackgroundProvider({ children }) {
 
   return (
     <BackgroundContext.Provider value={{ mounted }}>
-      <div className="fixed inset-0 z-0 overflow-hidden">
+      <div className="background-wrapper">
         <Background />
       </div>
       <div className="relative z-10">
