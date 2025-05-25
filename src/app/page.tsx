@@ -66,7 +66,7 @@ const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactN
     <a
       href={href}
       target='_blank'
-      className='text-white/75 hover:text-[#2053d0] transition-colors'
+      className='text-white/75 hover:text-[#efdfba] transition-colors'
     >
       {icon}
     </a>
