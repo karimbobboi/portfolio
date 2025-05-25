@@ -132,8 +132,8 @@ const SongsSection = () => {
           <h3 className='text-[#efdfba] font-normal text-2xl p-0'>Music</h3>
           <a className='cursor-pointer' onClick={() => setExpanded(!expanded)}>
             {expanded
-              ? <FaChevronDown className='text-white text-lg' />
-              : <FaChevronUp className='text-white text-lg' />}
+              ? <FaChevronDown className='text-[#efdfba] text-lg' />
+              : <FaChevronUp className='text-[#efdfba] text-lg' />}
           </a>
         </div>
         <div className='flex justify-between items-center'>
@@ -141,7 +141,7 @@ const SongsSection = () => {
           <div className='flex items-center gap-2'>
             <span className='text-white/75 text-sm'>via</span>
             <a href="https://www.last.fm/api" target="_blank" className='flex items-center'>
-              <FaLastfm className='w-5 h-5 text-white hover:text-[#E00000]' />
+              <FaLastfm className='w-5 h-5 text-[#efdfba] hover:text-[#E00000]' />
             </a>
           </div>
         </div>
@@ -199,8 +199,8 @@ const BooksSection = ({ books }: { books: BookInfo[] }) =>
               onClick={() => setExpanded(!expanded)}
             >
               {expanded 
-              ? (<FaChevronDown className='text-white text-lg' />) 
-              : (<FaChevronUp className='text-white text-lg' />)}
+              ? (<FaChevronDown className='text-[#efdfba] text-lg' />) 
+              : (<FaChevronUp className='text-[#efdfba] text-lg' />)}
             </a>
           </div>
           <p className='text-[#efdfba]/80 font-extralight text-sm'>My favourite books</p>
@@ -257,8 +257,8 @@ const FilmsSection = ({ films }: {films: FilmInfo[]}) =>
               onClick={() => setExpanded(!expanded)}
             >
               {expanded 
-              ? (<FaChevronDown className='text-white text-lg' />) 
-              : (<FaChevronUp className='text-white text-lg' />)}
+              ? (<FaChevronDown className='text-[#efdfba] text-lg' />) 
+              : (<FaChevronUp className='text-[#efdfba] text-lg' />)}
             </a>
           </div>
           <p className='text-[#efdfba]/80 font-extralight text-sm'>My favourite films</p>
