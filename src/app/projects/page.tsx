@@ -57,7 +57,7 @@ const projects: Project[] = [
 ];
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className='group border border-white/20 rounded-sm overflow-hidden bg-[#080028]/100 hover:bg-[#080028]/66 transition-all w-full mx-auto mb-3'>
+  <div className='group border border-white/20 rounded-sm overflow-hidden bg-[#080028]/100 hover:bg-[#080028]/100 transition-all w-full mx-auto mb-3'>
     <div className='p-2 space-y-2'>
       <header>
         <h2 className='text-xl font-normal text-white mb-2'>{project.title}</h2>
@@ -72,7 +72,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
       <div className='flex flex-col md:flex-row gap-4'>
         <div className='md:w-1/2'>
-          <div className='relative aspect-video overflow-hidden rounded-sm border border-gray-800'>
+          <div className='relative aspect-video overflow-hidden rounded-sm'>
             <img 
               src={`${project.image}`} 
               alt={`Screenshot of ${project.title}`}
@@ -83,7 +83,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
 
         <div className='md:w-1/2 flex flex-col justify-between'>
-          <p className='text-white text-md leading-relaxed'>
+          <p className='text-white/90 text-md leading-relaxed'>
             {project.description}
           </p>
 
@@ -92,20 +92,20 @@ const ProjectCard = ({ project }: { project: Project }) => (
                 <Link 
                     href={project.url}
                     target='_blank'
-                    className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
+                    className='flex items-center gap-1 text-sm text-white/85 hover:text-white transition-all'
                 >
                     <FaLink />
-                    <span className='font-light'>Live demo</span>
+                    <span className='font-thin'>live demo</span>
                 </Link>
             )}
             {project.github && (
               <Link 
                   href={project.github}
                   target='_blank'
-                  className='flex items-center gap-1 text-sm text-white hover:text-white transition-all'
+                  className='flex items-center gap-1 text-sm text-white/85 hover:text-white transition-all'
               >
                   <FaGithub />
-                  <span className='font-light'>Source</span>
+                  <span className='font-light'>source</span>
               </Link>
             )}
           </div>

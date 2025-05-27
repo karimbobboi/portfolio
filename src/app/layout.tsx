@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Maven_Pro } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { BackgroundProvider } from "./components/BackgroundProvider";
 
-const maven_pro = Maven_Pro({
+
+const urbanist = Urbanist({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300"],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={maven_pro.className}>
+    <html lang="en" className={urbanist.className}>
       <body>
         <BackgroundProvider>
           <div>
