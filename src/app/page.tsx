@@ -1,205 +1,285 @@
 "use client"
 
 import { useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaMapMarkerAlt, FaCalendarAlt, FaGraduationCap, FaBriefcase, FaCode, FaHeart, FaUser, FaExternalLinkAlt, FaUsers } from 'react-icons/fa';
+import NavBar from './components/NavBar';
+import { Experience, Education, Project, experiences, education, projects } from './types';
 
-interface Experience {
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  description: string[];
-  techstack: string[];
-}
-
-interface Education {
-  degree: string;
-  uni: string;
-  grade?: string;
-  period: string;
-  description: string[];
-}
-
-const experiences: Experience[] = [
-  {
-    title: "Software Engineer Intern",
-    company: "ZedSoft Limited",
-    location: 'Leeds, UK',
-    period: "July 2022 — September 2022",
-    description: [
-      "Collaborated within a small Agile team to develop a user-friendly dashboard for a cryptocurrency platform using Vue.js and Bootstrap",
-      "Integrated RESTful APIs to facilitate seamless communication between the frontend and backend systems",
-      "Contributed to the design and implementation of the platform's PostgreSQL database to optimise data management",
-      "Conducted code reviews and collaborated with team members to maintain high-quality code standards"
-    ],
-    techstack: ["Vue.js", "Bootstrap", "PostgreSQL"]
-  }
-];
-
-const education: Education[] = [
-  {
-    degree: "Bachelor of Science in Computing",
-    uni: "University of Buckingham",
-    grade: "First-Class Honours",
-    period: "2023 — 2025",
-    description: [
-      "Awarded the Rhodri J. Jassim Prize for Best Performing Student in Part I Examinations",
-      "Achieved a First-Class grade for final year project",
-      "Relevant modules: Design, Implementation and Analysis of Algorithms, Advanced Web Applications Development, Object Oriented Programming, Principles of Database Systems, UX Design, Software Quality Assurance"
-    ]
-  },
-  {
-    degree: "Bachelor of Science in Computer Science",
-    uni: "University of Leeds",
-    grade: "Transferred",
-    period: "2020 — 2022",
-    description: [
-      "Consistently achieved top marks in programming and algorithmic modules, including some of the highest scores in class",
-      "Built a strong foundation in object-oriented programming, procedural programming, data structures, and algorithm design",
-      "Relevant modules: Operating Systems, Procedural Programming, Networks, Computer Architecture"
-    ]
-  }
-];
-
-const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactNode; tooltip: string }) => (
-  <div className='has-tooltip'>
-    <a
-      href={href}
-      target='_blank'
-      className='text-white/75 hover:text-[#efdfba] transition-colors'
-    >
-      {icon}
-    </a>
-    {/* On hover, show tooltip */}
-    <span className='tooltip rounded p-1 bg-white/30 text-xs text-white/75 -mb-20'>{tooltip}</span>
+const SocialLinks = () => (
+  <div className='flex justify-start'>
+    <ContactLink 
+      href="mailto:abdulkarimbobboi@gmail.com"
+      icon={<FaEnvelope className="w-8 h-8" />}
+      tooltip="Send me an email"
+    />
+    <ContactLink 
+      href="https://github.com/karimbobboi"
+      icon={<FaGithub className="w-8 h-8" />}
+      tooltip="GitHub profile"
+    />
+    <ContactLink 
+      href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/"
+      icon={<FaLinkedin className="w-8 h-8" />}
+      tooltip="LinkedIn profile"
+    />
+    <ContactLink 
+      href="/portfolio/cv.pdf"
+      icon={<FaFileAlt className="w-8 h-8" />}
+      tooltip="View resume"
+    />
   </div>
 );
 
-const TabContent = ({ activeTab }: { activeTab: 'experience' | 'education' }) => {
-  if (activeTab === 'experience') {
-    return (
-      <div className='space-y-4'>
-        {experiences.map((exp, index) => (
-          <div key={index} className='space-y-1'>
-            <h3 className='text-lg font-semibold text-white'>{exp.title}</h3>
-            <div className='flex text-md font-light justify-between items-center text-white'>
-              <p>{exp.company}</p>
-              <p>{exp.location}</p>
-            </div>
-            <p className='text-sm text-white'>{exp.period}</p>
-            <ul className='list-disc list-inside text-sm text-white space-y-2'>
-              {exp.description.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-            <div className='grid auto-cols-max grid-flow-col gap-1 text-neutral-200 text-xs font-light pt-3'>
-              {exp.techstack.map((item, i) => (
-                <span key={i} className='bg-white/15 p-2 backdrop-blur rounded-full'>{item}</span>
-              ))}
-            </div>
-          </div>
-        ))}
+const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactNode; tooltip: string }) => (
+  <div className='group relative'>
+    <a
+      href={href}
+      target='_blank'
+      className='block p-1.5 rounded-lg hover:bg-white/10 transition-all duration-100'
+    >
+      <div className='text-white/90 group-hover:text-[#FFF5D6] group-hover:scale-110 transition-all duration-100'>
+        {icon}
       </div>
-    );
-  }
+    </a>
+    <span className='absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black/90 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20 z-10'>
+      {tooltip}
+    </span>
+  </div>
+);
 
-  return (
-    <div className='space-y-4'>
-      {education.map((edu, index) => (
-        <div key={index} className='space-y-1'>
-          <h3 className='text-lg font-semibold text-white'>{edu.degree} {edu.grade === 'Transferred' && (<span className='text-white/60 text-sm'>{`(${edu.grade})`}</span>)}</h3>
-          <div className='flex text-md font-light justify-between items-center text-white'>
-              <p>{edu.uni}</p>
-              {edu.grade !== 'Transferred' && (<p>{edu.grade}</p>)}
-            </div>
-          <p className='text-xs text-white'>{edu.period}</p>
-          <ul className='list-disc list-inside text-sm text-white space-y-2'>
-            {edu.description.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
+const ExperienceCard = ({ exp }: { exp: Experience }) => (
+  <div className='space-y-3 p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-100 w-full'>
+    <div className=''>
+      <h3 className='text-lg font-normal text-white'>{exp.title}</h3>
+      <div className='text-[#FFF5D6] font-normal'>{exp.company}</div>
+      <div className='flex justify-between gap-4 text-white/70 text-sm'>
+        <div className='flex items-center gap-1'>
+          <FaMapMarkerAlt className='w-3 h-3' />
+          <span className='text-md flex items-center gap-1 hover:text-[#FFF5D6]/100 cursor-pointer'>
+            {exp.location}
+            <span className="text-xl">
+              {exp.locationEmoji}
+            </span>
+          </span>
         </div>
+        <div className='flex items-center gap-1'>
+          <FaCalendarAlt className='w-3 h-3' />
+          <span>{exp.period}</span>
+        </div>
+      </div>
+    </div>
+    
+    <ul className='space-y-1 text-white/90'>
+      {exp.description.map((desc, i) => (
+        <li key={i} className='flex items-start gap-2 text-sm leading-relaxed font-light'>
+          <span className='text-white mt-2 w-1 h-1 rounded-full bg-current flex-shrink-0'></span>
+          <span>{desc}</span>
+        </li>
+      ))}
+    </ul>
+    
+    <div className='flex flex-wrap gap-1 pt-2 border-t border-white/10'>
+      {exp.techstack.map((tech, i) => (
+        <span key={i} className='py-1 px-2 bg-black/70 text-[#FFF5D6]/90 text-xs rounded-xs border border-black/100'>
+          {tech}
+        </span>
       ))}
     </div>
-  );
-};
+  </div>
+);
+
+const EducationCard = ({ edu }: { edu: Education }) => (
+  <div className='space-y-3 p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-100'>
+    <div className=''>
+      <h3 className='text-lg font-normal text-white'>{edu.degree}</h3>
+      <div className='text-[#FFF5D6] font-normal'>{edu.uni}</div>
+      <div className='flex justify-between gap-4 text-white/70 text-sm'>
+        <div className='flex items-center gap-1'>
+          {edu.grade && (
+            <span className='text-md flex items-center gap-1 hover:text-[#FFF5D6]/100 cursor-pointer'>
+              {edu.grade}
+            </span>
+          )}
+        </div>
+        <div className='flex items-center gap-1'>
+          <FaCalendarAlt className='w-3 h-3' />
+          <span>{edu.period}</span>
+        </div>
+      </div>
+    </div>
+    
+    <ul className='space-y-1 text-white/90'>
+      {edu.description.map((desc, i) => (
+        <li key={i} className='flex items-start gap-2 text-sm leading-relaxed'>
+          <span className='text-white mt-2 w-1 h-1 rounded-full bg-current flex-shrink-0'></span>
+          <span>{desc}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const ProjectCard = ({ project }: { project: Project }) => (
+  <div className='space-y-3 p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-200'>
+    <div className='space-y-2'>
+      <h3 className='text-lg font-normal text-white'>{project.title}</h3>
+      <p className='text-white/90 text-sm leading-relaxed font-light'>
+        {project.description}
+      </p>
+    </div>
+
+    <div className='flex gap-2'>
+      {project.link && (
+        <a 
+          href={project.link} 
+          target='_blank' 
+          rel='noopener noreferrer'
+          className='flex items-center gap-1 text-xs text-[#FFF5D6]/90 hover:text-[#1F53FF] transition-colors duration-200'
+        >
+          <FaExternalLinkAlt className='w-3 h-3' />
+          <span>Live Demo</span>
+        </a>
+      )}
+      {project.github && (
+        <a 
+          href={project.github} 
+          target='_blank' 
+          rel='noopener noreferrer'
+          className='flex items-center gap-1 text-xs text-[#FFF5D6]/90 hover:text-[#1F53FF] transition-colors duration-200'
+        >
+          <FaGithub className='w-3 h-3' />
+          <span>Source Code</span>
+        </a>
+      )}
+    </div>
+    
+    <div className='flex flex-wrap gap-1 pt-2 border-t border-white/10'>
+      {project.techstack.map((tech, i) => (
+        <span 
+          key={i} 
+          className='py-1 px-2 bg-black/70 text-[#FFF5D6]/90 text-xs rounded-xs border border-black/100'
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+const TabButton = ({ isActive, onClick, icon, children }: { 
+  isActive: boolean; 
+  onClick: () => void; 
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) => (
+  <button
+    onClick={onClick}
+    className={`flex items-center gap-2 px-4 py-2 rounded-md font-normal transition-all duration-100 text-sm ${
+      isActive 
+        ? 'bg-black/80 text-[#FFF5D6]/90 shadow-lg shadow-[#1F53FF]/30 border-black border-2' 
+        : 'text-black/100 border border-transparent hover:text-[#FFF5D6]/100 hover:border-1 hover:border-white/60 hover:border-dashed'
+    }`}
+  >
+    {icon}
+    {children}
+  </button>
+);
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState<'profile' | 'projects'>('profile');
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
 
   return (
-    <main className='min-h-screen relative'>
-      <div className='relative py-20'>
-        <div className='flex justify-center mb-12 mt-8'>
-          <div className='w-full max-w-3xl p-3 rounded-lg'>
-            <div className='space-y-4'>
-              <div className='space-y-2'>
-                <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50'>Hello, I'm Abdulkarim.</h1>
-                <div className='space-y-4'>
-                  <p className='text-white/100 leading-relaxed my-3'>
-                  I'm a Computing graduate and software engineer based in Sheffield, UK. I enjoy building clean, functional applications with a strong focus on user experience. I like working across the stack, from designing interfaces to connecting APIs and managing data. While I'm currently focused on full-stack web development, I'm always exploring new areas of computer science and looking for new things to learn.
+    <main className='min-h-screen relative'>      
+      <div className='pt-30'>
+        <NavBar activeSection={activeSection} setActiveSection={setActiveSection} />
+      </div>
+      
+      <div className='relative min-h-screen pb-30'>
+        <div className='container mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-screen gap-8 px-2 py-0 lg:px-1'>
+          
+          {/* Left side */}
+          <div className='flex items-start justify-center lg:sticky lg:top-8 py-8'>
+            <div className='w-full max-w-md'>
+              <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
+                <div className='space-y-2'>
+                  <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-white via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
+                    Hello, I'm <span className='font-normal'>Abdulkarim</span>
+                  </h1>
+                  <p className='text-[#FFF5D6]/90 text-base leading-relaxed font-light'>
+                    I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
                   </p>
+                  <div className='pt-1'>
+                    <SocialLinks />
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div className='grid auto-cols-max grid-flow-col gap-3 text-neutral-400'>
-                <ContactLink 
-                  href="mailto:abdulkarimbobboi@gmail.com"
-                  icon={<FaEnvelope className="w-[2.5rem] h-[2.5rem]" />}
-                  tooltip="Send me an email"
-                />
-                <ContactLink 
-                  href="https://github.com/karimbobboi"
-                  icon={<FaGithub className="w-[2.5rem] h-[2.5rem]" />}
-                  tooltip="GitHub profile"
-                />
-                <ContactLink 
-                  href="https://www.linkedin.com/in/abdulkarim-bobboi-6b041a224/"
-                  icon={<FaLinkedin className="w-[2.5rem] h-[2.5rem]" />}
-                  tooltip="LinkedIn profile"
-                />
-                <ContactLink 
-                  href="/portfolio/cv.pdf"
-                  icon={<FaFileAlt className="w-[2.5rem] h-[2.5rem]" />}
-                  tooltip="View resume"
-                />
+          {/* Right side */}
+          <div className='flex items-start justify-center py-8'>
+            <div className='w-full max-w-2xl'>
+              <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
+                {activeSection === 'profile' && (
+                  <>
+                    <div className='flex mb-2 border-b border-white/10 pb-2'>
+                      <div className='grid grid-cols-2 bg-white/10 rounded-md p-1 gap-1 border'>
+                        <TabButton
+                          isActive={activeTab === 'experience'}
+                          onClick={() => setActiveTab('experience')}
+                          icon={<FaBriefcase className='w-4 h-4' />}
+                        >
+                          Experience
+                        </TabButton>
+                        <TabButton
+                          isActive={activeTab === 'education'}
+                          onClick={() => setActiveTab('education')}
+                          icon={<FaGraduationCap className='w-4 h-4' />}
+                        >
+                          Education
+                        </TabButton>
+                      </div>
+                    </div>
+
+                    <div className='mt-4'>
+                      {activeTab === 'experience' && (
+                        <div className='space-y-4 animate-in fade-in duration-300'>
+                          {experiences.map((exp, i) => (
+                            <ExperienceCard key={i} exp={exp} />
+                          ))}
+                        </div>
+                      )}
+
+                      {activeTab === 'education' && (
+                        <div className='space-y-4 animate-in fade-in duration-300'>
+                          {education.map((edu, i) => (
+                            <EducationCard key={i} edu={edu} />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {activeSection === 'projects' && (
+                  <div className='space-y-4 animate-in fade-in duration-300'>
+                    <div className='space-y-4'>
+                      <h2 className='text-lg font-normal text-[#FFF5D6] border-b border-white/10 pb-2'>
+                        Projects
+                      </h2>
+                      <div className='space-y-4'>
+                        {projects.map((project, i) => (
+                          <ProjectCard key={i} project={project} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className='flex justify-center mt-10'>
-          <div className='w-full max-w-3xl p-3 rounded-lg'>
-            <div className='space-y-3'>
-              <h1 className='text-3xl font-bold text-[#efdfba] text-opacity-50'>Experience</h1>
-              <div className='flex space-x-4 border-b border-gray-800'>
-                <button
-                  onClick={() => setActiveTab('experience')}
-                  className={`px-2 text-sm font-medium transition-colors ${
-                    activeTab === 'experience' 
-                      ? 'text-white border-b-2 border-gray-200' 
-                      : 'text-white/50 hover:text-white'
-                  }`}
-                >
-                  Experience
-                </button>
-                <button
-                  onClick={() => setActiveTab('education')}
-                  className={`px-2 text-sm font-medium transition-colors ${
-                    activeTab === 'education' 
-                      ? 'text-white border-b-2 border-white' 
-                      : 'text-white/50 hover:text-white'
-                  }`}
-                >
-                  Education
-                </button>
-              </div>
-              
-              <div className='border border-gray-800 p-3 rounded bg-[#080028]/100'>
-                <TabContent activeTab={activeTab} />
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </main>
