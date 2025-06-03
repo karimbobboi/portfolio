@@ -177,7 +177,7 @@ const TabButton = ({ isActive, onClick, icon, children }: {
     className={`flex items-center gap-2 px-4 py-2 rounded-md font-normal transition-all duration-100 text-sm ${
       isActive 
         ? 'bg-black/80 text-[#FFF5D6]/90 shadow-lg shadow-[#1F53FF]/30 border-black border-2' 
-        : 'text-black/100 border border-transparent hover:text-[#FFF5D6]/100 hover:border-1 hover:border-white/60 hover:border-dashed'
+        : 'text-gray-300 bg-white/0 border-transparent hover:text-[#FFF5D6]/100 hover:border-1 hover:border-white/60 hover:border-dashed active:border-black/100'
     }`}
   >
     {icon}
@@ -203,7 +203,7 @@ export default function Home() {
             <div className='w-full max-w-md'>
               <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
                 <div className='space-y-2'>
-                  <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-white via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
+                  <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
                     Hello, I'm <span className='font-normal'>Abdulkarim</span>
                   </h1>
                   <p className='text-[#FFF5D6]/90 text-base leading-relaxed font-light'>
