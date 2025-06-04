@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { useState, useEffect } from "react";
 import { ImSpinner3 } from "react-icons/im";
@@ -92,6 +93,11 @@ export default function WikiCommons(){
         }
 
         fetchImages()
+        return () => {
+            // Cleanup images
+            setWikimage(null);
+            setImageTitle(null);
+        };
     }, [])
 
     const handleImageLoad = () => {
@@ -124,15 +130,18 @@ export default function WikiCommons(){
                             target="_blank"
                             className="block"
                         >
-                            <img 
+                            <Image 
                                 src={wikimage}
                                 alt={imageTitle || 'Wikimedia image'}
+                                title={imageTitle || 'Wikimedia image'}
                                 className={`
                                     max-h-[20rem] object-cover rounded-md w-full aspect-square
                                     ${loading ? 'opacity-0' : 'opacity-100'}
                                     transition-opacity duration-300 cursor-pointer
                                     hover:opacity-90
                                 `}
+                                width={200}
+                                height={200}
                                 onLoad={handleImageLoad}
                                 onError={handleImageError}
                             />
