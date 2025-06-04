@@ -5,10 +5,10 @@ import { Gradient } from "./gradient.jsx";
 import styles from "./Background.module.css";
 
 let gradientInitialized = false;
-let gradientInstance = null;
 
 const Background = memo(function Background() {
   const canvasRef = useRef(null);
+  const gradientRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -16,8 +16,8 @@ const Background = memo(function Background() {
     if (!canvasRef.current) return;
     
     if (!gradientInitialized) {
-      gradientInstance = new Gradient();
-      gradientInstance.initGradient("#gradient-canvas");
+      gradientRef.current = new Gradient();
+      gradientRef.current.initGradient("#gradient-canvas");
       gradientInitialized = true;
       
       // add delay before showing gradient
@@ -27,6 +27,15 @@ const Background = memo(function Background() {
     } else {
       setIsVisible(true);
     }
+
+    // cleanup function
+    return () => {
+      if (gradientRef.current) {
+        gradientRef.current.pause();
+        gradientRef.current.disconnect();
+        gradientRef.current = null;
+      }
+    };
   }, []);
 
   return (
