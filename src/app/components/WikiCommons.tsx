@@ -142,7 +142,7 @@ export default function WikiCommons(){
                             <>
                                 <div className="absolute top-1 left-2 right-2">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-white font-light text-xs px-2 py-1 rounded-sm mix-blend-difference bg-black">
+                                        <span className="text-white font-normal text-xs px-2 py-1 rounded-sm mix-blend-difference bg-black">
                                             WIKIMEDIA
                                         </span>
                                     </div>

@@ -49,18 +49,16 @@ const ContactLink = ({ href, icon, tooltip }: { href: string; icon: React.ReactN
 );
 
 const ExperienceCard = ({ exp }: { exp: Experience }) => (
-  <div className='space-y-3 p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-100 w-full'>
-    <div className=''>
-      <h3 className='text-lg font-normal text-white'>{exp.title}</h3>
-      <div className='text-[#FFF5D6] font-normal'>{exp.company}</div>
-      <div className='flex justify-between gap-4 text-white/70 text-sm'>
+  <div className='space-y-3 p-2 sm:p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-100 w-full'>
+    <div>
+      <h3 className='text-base sm:text-lg font-normal text-white'>{exp.title}</h3>
+      <div className='text-[#FFF5D6] text-sm sm:text-base font-normal'>{exp.company}</div>
+      <div className='flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4 text-white/70 text-xs sm:text-sm mt-1'>
         <div className='flex items-center gap-1'>
           <FaMapMarkerAlt className='w-3 h-3' />
-          <span className='text-md flex items-center gap-1 hover:text-[#FFF5D6]/100 cursor-pointer'>
+          <span className='flex items-center gap-1'>
             {exp.location}
-            <span className="text-xl">
-              {exp.locationEmoji}
-            </span>
+            <span className="text-lg">{exp.locationEmoji}</span>
           </span>
         </div>
         <div className='flex items-center gap-1'>
@@ -121,10 +119,10 @@ const EducationCard = ({ edu }: { edu: Education }) => (
 );
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className='space-y-3 p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-200'>
+  <div className='space-y-3 p-2 sm:p-2 rounded-md bg-white/5 border hover:border-dashed border-black/100 hover:bg-white/10 transition-all duration-200'>
     <div className='space-y-2'>
-      <h3 className='text-lg font-normal text-white'>{project.title}</h3>
-      <p className='text-white/90 text-sm leading-relaxed font-light'>
+      <h3 className='text-base sm:text-lg font-normal text-white'>{project.title}</h3>
+      <p className='text-white/90 text-xs sm:text-sm leading-relaxed font-light'>
         {project.description}
       </p>
     </div>
@@ -191,48 +189,47 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
 
   return (
-    <main className='min-h-screen relative'>      
-      <div className='pt-25'>
+    <main className='min-h-screen relative px-4 sm:px-6 lg:px-8'>      
+      <div className='pt-16 sm:pt-20'>
         <NavBar activeSection={activeSection} setActiveSection={setActiveSection} />
       </div>
       
-      <div className='relative min-h-screen pb-30'>
-        <div className='container mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-screen gap-8 px-2 py-0 lg:px-1'>
+      <div className='relative min-h-screen pb-20'>
+        <div className='container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'>
           
           {/* Left side */}
-          <div className='flex items-start justify-center lg:sticky lg:top-8 py-8'>
-            <div className='grid grid-row-2 gap-3'>
-              <div className='w-full max-w-md'>
-                <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
-                  <div className='space-y-2'>
-                    <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
+          <div className='flex items-start justify-center lg:sticky lg:top-8 py-4 sm:py-6 lg:py-8'>
+            <div className='space-y-4 w-full'>
+              <div className='w-full max-w-md mx-auto'>
+                <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-2 sm:p-4 border border-black/100 shadow-2xl'>
+                  <div className='space-y-3 sm:space-y-4'>
+                    <h1 className='text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
                       Hello, I'm <span className='font-normal'>Abdulkarim</span>
                     </h1>
-                    <p className='text-[#FFF5D6]/90 text-base leading-relaxed font-light'>
+                    <p className='text-[#FFF5D6]/90 text-sm sm:text-base leading-relaxed font-light'>
                       I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
                     </p>
-                    <div className='pt-1'>
+                    <div className='pt-2'>
                       <SocialLinks />
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className='w-full max-w-md'>                
-                  <WikiCommons />
+              <div className='w-full max-w-md mx-auto hidden lg:block'>                
+                <WikiCommons />
               </div>
-              
             </div>
           </div>
 
           {/* Right side */}
-          <div className='flex items-start justify-center py-8'>
+          <div className='flex items-start justify-center py-4 sm:py-6 lg:py-8'>
             <div className='w-full max-w-2xl'>
-              <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
+              <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 sm:p-2 lg:p-4 border border-black/100 shadow-2xl'>
                 {activeSection === 'profile' && (
                   <>
-                    <div className='flex mb-2 border-b border-white/10 pb-2'>
-                      <div className='grid grid-cols-2 bg-white/10 rounded-md p-1 gap-1 border'>
+                    <div className='flex mb-4 border-b border-white/10 pb-2'>
+                      <div className='grid grid-cols-2 bg-white/10 rounded-md p-1 gap-1 border w-full sm:w-auto'>
                         <TabButton
                           isActive={activeTab === 'experience'}
                           onClick={() => setActiveTab('experience')}
