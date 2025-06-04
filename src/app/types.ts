@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
     title: "Freelance Software Developer",
     company: "180 Degrees Consulting Sheffield",
     location: "Remote",
-    period: "January 2024 — March 2025",
+    period: "January 2025 — June 2025",
     description: [
       "Co-developed a mass email platform to support charity outreach across the UK",
       "Built a FastAPI backend and integrated Companies House API for real-time data retrieval",
