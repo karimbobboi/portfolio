@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaMapMarkerAlt, FaCalendarAlt, FaGraduationCap, FaBriefcase, FaCode, FaHeart, FaUser, FaExternalLinkAlt, FaUsers } from 'react-icons/fa';
 import NavBar from './components/NavBar';
+import WikiCommons from './components/WikiCommons';
 import { Experience, Education, Project, experiences, education, projects } from './types';
 
 const SocialLinks = () => (
@@ -191,7 +192,7 @@ export default function Home() {
 
   return (
     <main className='min-h-screen relative'>      
-      <div className='pt-30'>
+      <div className='pt-25'>
         <NavBar activeSection={activeSection} setActiveSection={setActiveSection} />
       </div>
       
@@ -200,20 +201,27 @@ export default function Home() {
           
           {/* Left side */}
           <div className='flex items-start justify-center lg:sticky lg:top-8 py-8'>
-            <div className='w-full max-w-md'>
-              <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
-                <div className='space-y-2'>
-                  <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
-                    Hello, I'm <span className='font-normal'>Abdulkarim</span>
-                  </h1>
-                  <p className='text-[#FFF5D6]/90 text-base leading-relaxed font-light'>
-                    I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
-                  </p>
-                  <div className='pt-1'>
-                    <SocialLinks />
+            <div className='grid grid-row-2 gap-3'>
+              <div className='w-full max-w-md'>
+                <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-3 border border-black/100 shadow-2xl'>
+                  <div className='space-y-2'>
+                    <h1 className='text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
+                      Hello, I'm <span className='font-normal'>Abdulkarim</span>
+                    </h1>
+                    <p className='text-[#FFF5D6]/90 text-base leading-relaxed font-light'>
+                      I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
+                    </p>
+                    <div className='pt-1'>
+                      <SocialLinks />
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div className='w-full max-w-md'>                
+                  <WikiCommons />
+              </div>
+              
             </div>
           </div>
 

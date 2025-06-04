@@ -46,3 +46,18 @@ html, body {
   scrollbar-width: none;  /* Firefox */
   overflow-y: scroll;
 }
+
+.slide-down {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: all 0.3s ease;
+}
+
+.group:hover .slide-down {
+  max-height: 100px;
+  opacity: 1;
+  transform: scaleY(1);
+}
