@@ -12,18 +12,38 @@ const NavButton = ({ isActive, href, icon, children }: {
 }) => (
   <Link
     href={href}
-    className={`flex flex-col items-center justify-center px-2 py-1 rounded-md transition-all duration-200 cursor-pointer min-w-[60px] ${
-      isActive 
-        ? 'bg-[#FFF5D6]/100 text-[#1F53FF]/100 shadow-sm' 
-        : 'text-[#FFF5D6]/100 hover:text-[#1F53FF]/80'
-    }`}
+    className={`
+      relative flex flex-col items-center justify-center px-2 py-1 rounded-md 
+      transition-all duration-200 ease-in-out cursor-pointer min-w-[60px]
+      overflow-hidden
+      ${isActive 
+        ? 'text-[#1F53FF]' 
+        : 'text-[#FFF5D6] hover:text-[#1F53FF]'
+      }
+    `}
   >
-    <div className="text-lg mb-1">
-      {icon}
+    <div 
+      className={`
+        absolute inset-0 transition-all duration-200 linear
+        ${isActive 
+          ? 'opacity-100 bg-[#FFF5D6]' 
+          : 'opacity-0 bg-[#FFF5D6]/0'
+        }
+      `}
+    />
+    
+    <div className={`
+      relative z-10 flex flex-col items-center 
+      transition-transform duration-300 ease-in-out
+      ${isActive ? 'scale-105' : 'scale-100'}
+    `}>
+      <div className="text-lg mb-1 transition-all duration-300">
+        {icon}
+      </div>
+      <span className="text-xs font-medium transition-all duration-300">
+        {children}
+      </span>
     </div>
-    <span className="text-xs font-medium">
-      {children}
-    </span>
   </Link>
 );
 
@@ -46,7 +66,7 @@ export default function NavBar() {
               href={link.href}
               icon={link.icon}
             >
-              Profile
+              {link.label}
             </NavButton>
           ))}
         </div>

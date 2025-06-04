@@ -52,50 +52,45 @@ export default function Page({
 children: React.ReactNode;
 }) {
   return (
-    // <div className="flex flex-col md:grid md:grid-cols-8 items-left justify-center gap-4 mt-4">
-    //   <ProfileCard />
-    //   {children}
-    // </div>
     <main className='min-h-screen relative px-4 sm:px-6 lg:px-8'>      
-          <div className='pt-16 sm:pt-20'>
+        <div className='pt-16 sm:pt-20'>
             <NavBar />
-          </div>
-          
-          <div className='relative min-h-screen pb-20'>
+        </div>
+        
+        <div className='relative min-h-screen pb-20'>
             <div className='container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'>
-              
-              {/* Left side */}
-              <div className='flex items-start justify-center lg:sticky lg:top-8 py-4 sm:py-6 lg:py-8'>
-                <div className='space-y-4 w-full'>
-                  <div className='w-full max-w-md mx-auto'>
-                    <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-2 sm:p-4 border border-black/100 shadow-2xl'>
-                      <div className='space-y-3 sm:space-y-4'>
-                        <h1 className='text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
-                          Hello, I'm <span className='font-normal'>Abdulkarim</span>
-                        </h1>
-                        <p className='text-[#FFF5D6]/90 text-sm sm:text-base leading-relaxed font-light'>
-                          I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
-                        </p>
-                        <div className='pt-2'>
-                          <SocialLinks />
+                
+                {/* Left side */}
+                <div className='flex items-start justify-center lg:sticky lg:top-8 py-4 sm:py-6 lg:py-8'>
+                    <div className='space-y-4 w-full'>
+                        <div className='w-full max-w-md mx-auto'>
+                            <div className='bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-sm rounded-md p-2 sm:p-4 border border-black/100 shadow-2xl'>
+                                <div className='space-y-3 sm:space-y-4'>
+                                    <h1 className='text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-[#FFFAEB] via-white to-[#1F53FF] inline-block text-transparent bg-clip-text font-light leading-tight'>
+                                        Hello, I'm <span className='font-normal'>Abdulkarim</span>
+                                    </h1>
+                                    <p className='text-[#FFF5D6]/90 text-sm sm:text-base leading-relaxed font-light'>
+                                        I'm a Computing graduate and software developer, with a focus on full-stack development. I enjoy building useful, interesting applications and working across the stack, from UI design to APIs and data.
+                                    </p>
+                                    <div className=''>
+                                        <SocialLinks />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                        <div className='w-full max-w-md mx-auto hidden lg:block'>                
+                            <WikiCommons />
+                        </div>
                     </div>
-                  </div>
-    
-                  <div className='w-full max-w-md mx-auto hidden lg:block'>                
-                    <WikiCommons />
-                  </div>
                 </div>
-              </div>
-    
-              {/* Right side */}
-              <div className='flex items-start justify-center py-4 sm:py-6 lg:py-8'>
-                {children}
-              </div>
-    
+
+                {/* Right side */}
+                <div className='flex items-start justify-center py-4 sm:py-6 lg:py-8'>
+                    {children}
+                </div>
+
             </div>
-          </div>
-        </main>
+        </div>
+    </main>
   );
 }
