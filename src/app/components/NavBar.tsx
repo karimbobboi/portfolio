@@ -17,7 +17,7 @@ const NavButton = ({ isActive, href, icon, children }: {
       transition-all duration-200 ease-in-out cursor-pointer min-w-[60px]
       overflow-hidden
       ${isActive 
-        ? 'text-[#1F53FF]' 
+        ? 'text-[#00218F]' 
         : 'text-[#FFF5D6] hover:text-[#1F53FF]'
       }
     `}

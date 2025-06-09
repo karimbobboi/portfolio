@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { SiWikimediacommons } from "react-icons/si";
+import { FiRefreshCw } from 'react-icons/fi';
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
@@ -19,7 +20,7 @@ function formatImageTitle(title: string){
 const wikicommons_categories = ['Featured_pictures_on_Wikimedia_Commons', 'Valued_images']
 
 const fetch_images_from_wikicategory = async (category: string) => {
-    const image_limit = 800;
+    const image_limit = 500;
     const url = 'https://commons.wikimedia.org/w/api.php' 
         + '?action=query' 
         + '&list=categorymembers' 
@@ -75,24 +76,7 @@ export default function WikiCommons(){
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        const fetchImages = async () => {
-            try {
-                const images: any = await fetch_images_from_wikicategory(wikicommons_categories[0]);
-                const random_int = getRandomInt(images.length);
-                console.log("image index: ", random_int);
-                const firstImage = await fetch_image_from_wikicommons(images[random_int].title);
-                if(firstImage){
-                    setWikimage(firstImage.imageinfo[0].url);
-                    setImageUrl(firstImage.imageinfo[0].descriptionurl)
-                    setImageTitle(firstImage.title as string | null);
-                    // setLoading(false);
-                }
-            } catch (err) {
-                setError(true);
-            }
-        }
-
-        fetchImages()
+        refreshImage()
         return () => {
             // Cleanup images
             setWikimage(null);
@@ -107,6 +91,27 @@ export default function WikiCommons(){
     const handleImageError = () => {
         setLoading(false);
         setError(true);
+    };
+
+    const refreshImage = async () => {
+        setLoading(true);
+        setError(false);
+        setWikimage(null);
+        
+        try {
+            const category_index = getRandomInt(wikicommons_categories.length);
+            const images: any = await fetch_images_from_wikicategory(wikicommons_categories[category_index]);
+            const random_int = getRandomInt(images.length);
+            const firstImage = await fetch_image_from_wikicommons(images[random_int].title);
+            if(firstImage){
+                setWikimage(firstImage.imageinfo[0].url);
+                setImageUrl(firstImage.imageinfo[0].descriptionurl);
+                setImageTitle(firstImage.title as string | null);
+                // setLoading(false);
+            }
+        } catch (err) {
+            setError(true);
+        }
     };
 
     if(error) return (
@@ -151,9 +156,20 @@ export default function WikiCommons(){
                             <>
                                 <div className="absolute top-1 left-2 right-2">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-white font-normal text-xs px-2 py-1 rounded-sm mix-blend-difference bg-black">
+                                        <span className="text-white font-normal text-xs px-2 py-1 rounded-sm mix-blend-difference">
                                             WIKIMEDIA
                                         </span>
+                                        <button 
+                                            onClick={refreshImage}
+                                            className="p-1.5 rounded-full text-white/70 hover:bg-black/70
+                                                     transition-all duration-200 cursor-pointer
+                                                     opacity-0 group-hover:opacity-100"
+                                            title="Load new image"
+                                        >
+                                            <FiRefreshCw 
+                                                className="w-3.5 h-3.5"
+                                            />
+                                        </button>
                                     </div>
                                 </div>
 
