@@ -121,7 +121,10 @@ export default function WikiCommons(){
     );
 
     return (
-        <div className='bg-black/100 rounded-md p-1 border border-gray-700'>
+        <div className='bg-black/100 border border-gray-700' style={{
+            padding: '0.1rem',
+            borderRadius: '0.4rem'
+        }}>
             <div className="group relative min-h-[20rem]">
                 {loading && (
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -140,7 +143,7 @@ export default function WikiCommons(){
                                 alt={imageTitle || 'Wikimedia image'}
                                 title={imageTitle || 'Wikimedia image'}
                                 className={`
-                                    max-h-[20rem] object-cover rounded-md w-full aspect-square
+                                    max-h-[20rem] object-cover w-full aspect-square
                                     ${loading ? 'opacity-0' : 'opacity-100'}
                                     transition-opacity duration-300 cursor-pointer
                                     hover:opacity-90
@@ -149,6 +152,7 @@ export default function WikiCommons(){
                                 height={200}
                                 onLoad={handleImageLoad}
                                 onError={handleImageError}
+                                style={{ borderRadius: '0.3rem' }}
                             />
                         </a>
 
